@@ -4,4 +4,6 @@
 .settings
 /bin/
 /build/
+node_modules
+src/main/resources/assets
 
