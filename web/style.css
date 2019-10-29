@@ -8,12 +8,13 @@
     text-align: center;
 }
 
-.block {
-    margin-bottom: 80px;
+.header h1 {
+    font-size: 36px;
 }
 
 .header {
-    font-size: 18px;
+    font-size: 16px;
+    margin-bottom: 60px;
 }
 
 .coins-panel {
@@ -43,6 +44,10 @@
     height: 60px;
     background-size: contain;
     background-image: url("./sad.png");
+}
+
+.bulbs-panel {
+    margin-bottom: 60px;
 }
 
 .bulb-section {

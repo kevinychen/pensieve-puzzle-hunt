@@ -55,16 +55,17 @@ class App extends React.Component {
         const { states, words, win } = this.state;
         return (
             <div>
-                <div className="block header">
+                <div className="header">
                     <h1>Blind Lights Out</h1>
+                    <span>The blind don't need light. Help them turn off all the lights, and they may reward you with a message of their own.</span>
                 </div>
-                <div className="block coins-panel">
+                <div className="coins-panel">
                     {this.renderCoinPanel()}
                 </div>
-                <div className="block bulbs-panel">
+                <div className="bulbs-panel">
                     {states.map(state => <Bulbs state={state} />)}
                 </div>
-                <div className="block input-panel">
+                <div className="input-panel">
                     <input
                         id="input-field"
                         type="text"
@@ -73,7 +74,7 @@ class App extends React.Component {
                         disabled={win}
                     />
                 </div>
-                <div className="block history">
+                <div className="history">
                     {words.map(word => <div>{word}</div>)}
                 </div>
             </div>
