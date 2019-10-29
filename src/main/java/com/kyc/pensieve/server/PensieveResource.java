@@ -31,13 +31,13 @@ public class PensieveResource implements PensieveService {
                 grid[i][j] = true;
         for (String word : request.getWords()) {
             if (word.length() > N)
-                return GetAnswerResponse.builder().error("The word is too long. Please try again.").build();
+                return new GetAnswerResponse(null, "The word is too long. Please try again.", false);
             if (!words.contains(word))
-                return GetAnswerResponse.builder().error("That is not a valid word. Please try again.").build();
+                return new GetAnswerResponse(null, "That is not a valid word. Please try again.", false);
             for (int i = 0; i < word.length(); i++) {
                 int index = word.charAt(i) - 'A';
                 if (index < 0 || index >= 26)
-                    return GetAnswerResponse.builder().error("The word contains invalid characters. Please try again.").build();
+                    return new GetAnswerResponse(null, "The word contains invalid characters. Please try again.", false);
                 for (char c : BRAILLE[index].toCharArray())
                     grid[i][(c - '1')] ^= true;
             }
@@ -47,9 +47,9 @@ public class PensieveResource implements PensieveService {
             for (int i = 0; i < N; i++)
                 for (char c : BRAILLE[ANSWER.charAt(i) - 'A'].toCharArray())
                     winGrid[i][(c - '1')] = true;
-            return GetAnswerResponse.builder().grid(winGrid).win(true).build();
+            return new GetAnswerResponse(winGrid, null, true);
         }
-        return GetAnswerResponse.builder().grid(grid).build();
+        return new GetAnswerResponse(grid, null, false);
     }
 
     private boolean allBlank(boolean[][] grid) {

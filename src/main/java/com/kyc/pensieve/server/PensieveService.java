@@ -11,9 +11,6 @@ import javax.ws.rs.core.MediaType;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import lombok.Builder;
-import lombok.Data;
-
 @Path("/")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
@@ -23,7 +20,6 @@ public interface PensieveService {
     @Path("/answer")
     GetAnswerResponse getAnswer(GetAnswerRequest request);
 
-    @Data
     public static class GetAnswerRequest {
 
         private final List<String> words;
@@ -32,14 +28,37 @@ public interface PensieveService {
         public GetAnswerRequest(@JsonProperty("words") List<String> words) {
             this.words = words;
         }
+
+        public List<String> getWords() {
+            return words;
+        }
     }
 
-    @Data
-    @Builder
     public static class GetAnswerResponse {
 
         private final boolean[][] grid;
-        private String error;
-        private boolean win;
+        private final String error;
+        private final boolean win;
+
+        public GetAnswerResponse(boolean[][] grid, String error, boolean win) {
+            this.grid = grid;
+            this.error = error;
+            this.win = win;
+        }
+
+        @JsonProperty("grid")
+        public boolean[][] getGrid() {
+            return grid;
+        }
+
+        @JsonProperty("error")
+        public String getError() {
+            return error;
+        }
+
+        @JsonProperty("win")
+        public boolean isWin() {
+            return win;
+        }
     }
 }
