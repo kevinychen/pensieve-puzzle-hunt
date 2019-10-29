@@ -16,14 +16,14 @@ class Bulbs extends React.Component {
             <div className="bulb-section">
                 <div className="bulb-row">
                     <Bulb on={state[0]} />
-                    <Bulb on={state[1]} />
-                </div>
-                <div className="bulb-row">
-                    <Bulb on={state[2]} />
                     <Bulb on={state[3]} />
                 </div>
                 <div className="bulb-row">
+                    <Bulb on={state[1]} />
                     <Bulb on={state[4]} />
+                </div>
+                <div className="bulb-row">
+                    <Bulb on={state[2]} />
                     <Bulb on={state[5]} />
                 </div>
             </div>
