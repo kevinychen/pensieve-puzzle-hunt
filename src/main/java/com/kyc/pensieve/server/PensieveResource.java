@@ -31,25 +31,29 @@ public class PensieveResource implements PensieveService {
                 grid[i][j] = true;
         for (String word : request.getWords()) {
             if (word.length() > N)
-                return new GetAnswerResponse(null, "The word is too long. Please try again.", false);
+                return new GetAnswerResponse(null, "The word is too long. Please try again.", false, false);
             if (!words.contains(word))
-                return new GetAnswerResponse(null, "That is not a valid word. Please try again.", false);
+                return new GetAnswerResponse(null, "That is not a valid word. Please try again.", false, false);
             for (int i = 0; i < word.length(); i++) {
                 int index = word.charAt(i) - 'A';
                 if (index < 0 || index >= 26)
-                    return new GetAnswerResponse(null, "The word contains invalid characters. Please try again.", false);
+                    return new GetAnswerResponse(null, "The word contains invalid characters. Please try again.", false, false);
                 for (char c : BRAILLE[index].toCharArray())
                     grid[i][(c - '1')] ^= true;
             }
         }
-        if (request.getWords().size() <= N && allBlank(grid)) {
-            boolean[][] winGrid = new boolean[N][K];
-            for (int i = 0; i < N; i++)
-                for (char c : BRAILLE[ANSWER.charAt(i) - 'A'].toCharArray())
-                    winGrid[i][(c - '1')] = true;
-            return new GetAnswerResponse(winGrid, null, true);
+        if (allBlank(grid)) {
+            if (request.getWords().size() <= N) {
+                boolean[][] winGrid = new boolean[N][K];
+                for (int i = 0; i < N; i++)
+                    for (char c : BRAILLE[ANSWER.charAt(i) - 'A'].toCharArray())
+                        winGrid[i][(c - '1')] = true;
+                return new GetAnswerResponse(winGrid, null, true, true);
+            } else {
+                return new GetAnswerResponse(grid, null, true, false);
+            }
         }
-        return new GetAnswerResponse(grid, null, false);
+        return new GetAnswerResponse(grid, null, false, false);
     }
 
     private boolean allBlank(boolean[][] grid) {

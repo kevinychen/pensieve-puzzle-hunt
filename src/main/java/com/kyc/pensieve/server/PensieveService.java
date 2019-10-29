@@ -38,11 +38,13 @@ public interface PensieveService {
 
         private final boolean[][] grid;
         private final String error;
+        private final boolean complete;
         private final boolean win;
 
-        public GetAnswerResponse(boolean[][] grid, String error, boolean win) {
+        public GetAnswerResponse(boolean[][] grid, String error, boolean complete, boolean win) {
             this.grid = grid;
             this.error = error;
+            this.complete = complete;
             this.win = win;
         }
 
@@ -54,6 +56,11 @@ public interface PensieveService {
         @JsonProperty("error")
         public String getError() {
             return error;
+        }
+
+        @JsonProperty("complete")
+        public boolean isComplete() {
+            return complete;
         }
 
         @JsonProperty("win")

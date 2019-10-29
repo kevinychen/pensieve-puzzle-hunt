@@ -47,12 +47,13 @@ class App extends React.Component {
                 [true, true, true, true, true, true],
             ],
             words: [],
+            complete: false,
             win: false,
         };
     }
 
     render() {
-        const { states, words, win } = this.state;
+        const { states, words, complete } = this.state;
         return (
             <div>
                 <div className="header">
@@ -71,7 +72,7 @@ class App extends React.Component {
                         type="text"
                         placeholder="Enter word..."
                         onKeyPress={this.onKeyPress}
-                        disabled={win}
+                        disabled={complete}
                     />
                 </div>
                 <div className="history">
@@ -106,10 +107,19 @@ class App extends React.Component {
                     this.setState({
                         states: body.grid || states,
                         words: body.error ? words : newWords,
+                        complete: body.complete,
                         win: body.win,
                     });
                     document.getElementById('input-field').value = '';
-                    document.getElementById('input-field').placeholder = body.win ? '' : (body.error || 'Enter word...');
+                    if (body.win) {
+                        document.getElementById('input-field').placeholder = '';
+                    } else if (body.complete) {
+                        document.getElementById('input-field').placeholder = 'Lights out! But not quite fast enough...';
+                    } else if (body.error) {
+                        document.getElementById('input-field').placeholder = body.error;
+                    } else {
+                        document.getElementById('input-field').placeholder = 'Enter word...'
+                    }
                 });
             });
         }
