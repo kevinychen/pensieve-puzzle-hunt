@@ -1,0 +1,28 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+sourceCompatibility = 1.8
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile "io.dropwizard:dropwizard-assets:1.2.1"
+    compile "org.projectlombok:lombok:1.18.6"
+
+    testCompile "junit:junit:4.12"
+    testCompile "org.assertj:assertj-core:3.11.0"
+}
+
+task run(type: JavaExec) {
+    classpath project.sourceSets.main.runtimeClasspath
+    main "com.kyc.pensieve.server.PensieveServer"
+}
+
