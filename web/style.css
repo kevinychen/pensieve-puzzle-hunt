@@ -1,10 +1,80 @@
 
 #app {
     position: absolute;
-    top: 50%;
+    top: 40px;
     left: 50%;
-    margin-top: -50px;
-    margin-left: -50px;
-    width: 100px;
-    height: 100px;
+    margin-left: -460px;
+    width: 920px;
+    text-align: center;
+}
+
+.block {
+    margin-bottom: 80px;
+}
+
+.header {
+    font-size: 18px;
+}
+
+.coins-panel {
+    height: 30px;
+    margin-bottom: 40px;
+}
+
+.coin {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-size: contain;
+    background-image: url("./coin.png");
+}
+
+.happy {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    background-size: contain;
+    background-image: url("./happy.png");
+}
+
+.sad {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    background-size: contain;
+    background-image: url("./sad.png");
+}
+
+.bulb-section {
+    display: inline-block;
+}
+
+.bulb-section + .bulb-section {
+    margin-left: 40px;
+}
+
+.bulb {
+    display: inline-block;
+    width: 40px;
+    height: 60px;
+    background-size: contain;
+}
+
+.on {
+    background-image: url("./on.png");
+}
+
+.off {
+    background-image: url("./off.png");
+}
+
+.input-panel {
+    margin-bottom: 40px;
+}
+
+#input-field {
+    width: 400px;
+    height: 40px;
+    font-size: 18px;
+    padding: 0px 8px;
 }

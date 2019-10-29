@@ -34,15 +34,19 @@ public class PensieveResource implements PensieveService {
                 return GetAnswerResponse.builder().error("The word is too long. Please try again.").build();
             if (!words.contains(word))
                 return GetAnswerResponse.builder().error("That is not a valid word. Please try again.").build();
-            for (int i = 0; i < word.length(); i++)
-                for (char c : BRAILLE[word.charAt(i) - 'A'].toCharArray())
+            for (int i = 0; i < word.length(); i++) {
+                int index = word.charAt(i) - 'A';
+                if (index < 0 || index >= 26)
+                    return GetAnswerResponse.builder().error("The word contains invalid characters. Please try again.").build();
+                for (char c : BRAILLE[index].toCharArray())
                     grid[i][(c - '1')] ^= true;
+            }
         }
         if (request.getWords().size() <= N && allBlank(grid)) {
             boolean[][] winGrid = new boolean[N][K];
             for (int i = 0; i < N; i++)
                 for (char c : BRAILLE[ANSWER.charAt(i) - 'A'].toCharArray())
-                    grid[i][(c - '1')] = true;
+                    winGrid[i][(c - '1')] = true;
             return GetAnswerResponse.builder().grid(winGrid).win(true).build();
         }
         return GetAnswerResponse.builder().grid(grid).build();
