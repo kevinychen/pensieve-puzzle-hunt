@@ -108,7 +108,7 @@ class App extends React.Component {
                         win: body.win,
                     });
                     document.getElementById('input-field').value = '';
-                    document.getElementById('input-field').placeholder = body.error || 'Enter word...';
+                    document.getElementById('input-field').placeholder = body.win ? '' : (body.error || 'Enter word...');
                 });
             });
         }

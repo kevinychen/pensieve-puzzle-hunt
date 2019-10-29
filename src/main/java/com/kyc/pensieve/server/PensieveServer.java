@@ -9,6 +9,7 @@ import io.dropwizard.setup.Environment;
 public class PensieveServer extends Application<Configuration> {
 
     public static void main(String[] args) throws Exception {
+        System.setProperty("dw.server.applicationConnectors[0].port", "8090");
         new PensieveServer().run("server");
     }
 
