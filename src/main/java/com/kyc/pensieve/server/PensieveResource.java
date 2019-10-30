@@ -32,6 +32,8 @@ public class PensieveResource implements PensieveService {
         for (String word : request.getWords()) {
             if (word.length() > N)
                 return new GetAnswerResponse(null, "The word is too long. Please try again.", false, false);
+            if (word.length() <= 1)
+                return new GetAnswerResponse(null, "The word is too short. Please try again.", false, false);
             if (!words.contains(word))
                 return new GetAnswerResponse(null, "That is not a valid word. Please try again.", false, false);
             for (int i = 0; i < word.length(); i++) {
