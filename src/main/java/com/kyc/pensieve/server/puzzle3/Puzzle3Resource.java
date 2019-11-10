@@ -31,15 +31,15 @@ public class Puzzle3Resource implements Puzzle3Service {
                 grid[i][j] = true;
         for (String word : request.getWords()) {
             if (word.length() > N)
-                return new GetAnswerResponse(null, "The word is too long. Please try again.", false, false);
+                return GetAnswerResponse.builder().error("The word is too long. Please try again.").build();
             if (word.length() <= 1)
-                return new GetAnswerResponse(null, "The word is too short. Please try again.", false, false);
+                return GetAnswerResponse.builder().error("The word is too short. Please try again.").build();
             if (!words.contains(word))
-                return new GetAnswerResponse(null, "That is not a valid word. Please try again.", false, false);
+                return GetAnswerResponse.builder().error("That is not a valid word. Please try again.").build();
             for (int i = 0; i < word.length(); i++) {
                 int index = word.charAt(i) - 'A';
                 if (index < 0 || index >= 26)
-                    return new GetAnswerResponse(null, "The word contains invalid characters. Please try again.", false, false);
+                    return GetAnswerResponse.builder().error("The word contains invalid characters. Please try again.").build();
                 for (char c : BRAILLE[index].toCharArray())
                     grid[i][(c - '1')] ^= true;
             }
@@ -50,12 +50,12 @@ public class Puzzle3Resource implements Puzzle3Service {
                 for (int i = 0; i < N; i++)
                     for (char c : BRAILLE[ANSWER.charAt(i) - 'A'].toCharArray())
                         winGrid[i][(c - '1')] = true;
-                return new GetAnswerResponse(winGrid, null, true, true);
+                return GetAnswerResponse.builder().grid(winGrid).complete(true).win(true).build();
             } else {
-                return new GetAnswerResponse(grid, null, true, false);
+                return GetAnswerResponse.builder().grid(grid).complete(true).build();
             }
         }
-        return new GetAnswerResponse(grid, null, false, false);
+        return GetAnswerResponse.builder().grid(grid).build();
     }
 
     private boolean allBlank(boolean[][] grid) {
