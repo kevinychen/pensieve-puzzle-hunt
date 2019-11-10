@@ -1,5 +1,7 @@
 import "./style.css";
 import * as classNames from "classnames";
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 class Bulb extends React.Component {
 

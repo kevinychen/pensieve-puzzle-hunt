@@ -30,7 +30,25 @@
     display: inline-block;
     width: 64px;
     height: 64px;
+}
+
+.piece {
+    display: inline-block;
+    width: 64px;
+    height: 64px;
     background-size: contain;
+}
+
+.can-drag {
+    cursor: 'move',
+}
+
+.can-drag:hover {
+    background-color: yellow !important;
+}
+
+.can-drop {
+    background-color: yellow !important;
 }
 
 .white {

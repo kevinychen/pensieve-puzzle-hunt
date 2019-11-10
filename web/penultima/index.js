@@ -1,29 +1,63 @@
 import "./style.css";
 import * as classNames from "classnames";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { DndProvider, useDrag, useDrop } from 'react-dnd'
+import HTML5Backend from 'react-dnd-html5-backend'
 
-class GridSquare extends React.Component {
+function GridSquare(props) {
+    const {
+        isPlayerWhite,
+        rowNum,
+        colNum,
+        piece,
+    } = props;
 
-    render() {
-        const { rowNum, colNum, piece } = this.props;
-        return (
-            <span className={classNames(
+    const [{ isDragging }, drag] = useDrag({
+        item: { type: 'piece', startRow: rowNum, startCol: colNum },
+        collect: monitor => ({
+            isDragging: !!monitor.isDragging(),
+        }),
+    });
+    const [{ isOver }, drop] = useDrop({
+		accept: 'piece',
+		drop: ({startRow, startCol}) => console.log(startRow + " " + startCol + " " + rowNum + " " + colNum),
+		collect: monitor => ({
+			isOver: !!monitor.isOver(),
+		}),
+	});
+
+    const canDrag = isPlayerWhite && piece !== piece.toUpperCase() || !isPlayerWhite && piece !== piece.toLowerCase();
+    return (
+        <span
+            ref={drop}
+            className={classNames(
                 'square',
                 (rowNum + colNum) % 2 == 0 ? 'white' : 'black',
-                piece === ' ' ? undefined : 'piece-' + piece,
-            )}>
+                { 'can-drop': isOver },
+            )}
+        >
+            <span
+                ref={canDrag ? drag : undefined}
+                className={classNames(
+                    'piece',
+                    piece === ' ' ? undefined : 'piece-' + piece,
+                    { 'can-drag': !isDragging && canDrag },
+                )}
+            >
                 {""}
             </span>
-        );
-    }
+        </span>
+    );
 }
 
 class GridRow extends React.Component {
 
     render() {
-        const { rowNum, row } = this.props;
+        const { rowNum, row, ...props } = this.props;
         return (
             <div className="grid-row">
-                {[...row].map((piece, colNum) => <GridSquare rowNum={rowNum} colNum={colNum} piece={piece} />)}
+                {[...row].map((piece, colNum) => <GridSquare key={colNum} rowNum={rowNum} colNum={colNum} piece={piece} {...props} />)}
             </div>
         );
     }
@@ -32,14 +66,16 @@ class GridRow extends React.Component {
 class Grid extends React.Component {
 
     render() {
-        const { grid } = this.props;
+        const { grid, ...props } = this.props;
         if (!grid) {
             return null;
         }
         return (
-            <div className="grid">
-                {grid.map((row, rowNum) => <GridRow rowNum={rowNum} row={row} />)}
-            </div>
+            <DndProvider backend={HTML5Backend}>
+                <div className="grid">
+                    {grid.map((row, rowNum) => <GridRow key={rowNum} rowNum={rowNum} row={row} {...props} />)}
+                </div>
+            </DndProvider>
         );
     }
 }
@@ -50,7 +86,7 @@ class App extends React.Component {
         super(props);
         this.state = {
             isPlayerWhite: true,
-            grid: undefined,
+            grid: ['  n', ' nn', 'n  '],
             isPlayerTurnToMove: true,
             signature: undefined,
         };
@@ -75,7 +111,6 @@ class App extends React.Component {
     }
 
     render() {
-        const { grid } = this.state;
         return (
             <div>
                 <div className="header">
@@ -83,7 +118,7 @@ class App extends React.Component {
                     <span><i>flavor text here</i></span>
                 </div>
                 <div className="board-container">
-                    <Grid grid={grid} />
+                    <Grid {...this.state} />
                 </div>
             </div>
         );
