@@ -122,6 +122,9 @@ class App extends React.Component {
                     state: body.state,
                     signature: body.signature,
                 });
+                if (!body.state.playerTurnToMove) {
+                    this.computerMove();
+                }
             });
         });
     }
