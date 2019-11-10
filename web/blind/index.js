@@ -60,7 +60,7 @@ class App extends React.Component {
             <div>
                 <div className="header">
                     <h1>Blind Lights Out</h1>
-                    <span>The blind don't need light. Help them turn off all the lights, and they may reward you with a message of their own.</span>
+                    <span><i>The blind don't need light. Help them turn off all the lights, and they may reward you with a message of their own.</i></span>
                 </div>
                 <div className="coins-panel">
                     {this.renderCoinPanel()}

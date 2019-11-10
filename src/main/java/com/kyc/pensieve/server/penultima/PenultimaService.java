@@ -45,7 +45,7 @@ public interface PenultimaService {
     @Data
     public static class PlayerMoveResponse {
 
-        private final boolean isValid;
+        private final boolean valid;
         private final BoardState endState;
         private final byte[] signature;
     }

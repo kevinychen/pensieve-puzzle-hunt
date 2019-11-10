@@ -14,6 +14,8 @@ function GridSquare(props) {
         rowNum,
         colNum,
         piece,
+        computerLastMove,
+        waiting,
         playerMove,
     } = props;
 
@@ -31,7 +33,7 @@ function GridSquare(props) {
 		}),
 	});
 
-    const canDrag = playerTurnToMove &&
+    const canDrag = playerTurnToMove && !waiting &&
         (playerWhite && piece !== piece.toUpperCase() || !playerWhite && piece !== piece.toLowerCase());
     return (
         <span
@@ -40,6 +42,10 @@ function GridSquare(props) {
                 'square',
                 (rowNum + colNum) % 2 == 0 ? 'white' : 'black',
                 { 'can-drop': isOver },
+                { 'computer-last-move': computerLastMove &&
+                    (computerLastMove.start.row === rowNum && computerLastMove.start.col === colNum
+                        || computerLastMove.end.row === rowNum && computerLastMove.end.col === colNum)
+                },
             )}
         >
             <span
@@ -97,7 +103,9 @@ class App extends React.Component {
                 playerTurnToMove: true,
             },
             signature: undefined,
-            isMoveValid: undefined,
+            computerLastMove: undefined,
+            status: 'Your move.',
+            waiting: false,
         };
     }
 
@@ -119,11 +127,15 @@ class App extends React.Component {
     }
 
     render() {
+        const { status } = this.state;
         return (
             <div>
                 <div className="header">
                     <h1>Penultima</h1>
-                    <span><i>flavor text here</i></span>
+                    <span><i>Wizard's chess is more difficult when you don't know the rules.</i></span>
+                </div>
+                <div className="status">
+                    {status}
                 </div>
                 <div className="board-container">
                     <Grid {...this.state} playerMove={this.playerMove} />
@@ -134,6 +146,7 @@ class App extends React.Component {
 
     playerMove = (startRow, startCol, endRow, endCol) => {
         const { state, signature } = this.state;
+        this.setState({ status: '...', waiting: true });
         fetch('http://localhost:8090/api/penultima/player-move', {
             method: 'POST',
             body: JSON.stringify({
@@ -148,9 +161,36 @@ class App extends React.Component {
         }).then(response => {
             response.json().then(body => {
                 this.setState({
-                    isMoveValid: body.isValid,
                     state: body.endState,
                     signature: body.signature,
+                    waiting: false,
+                });
+                if (body.valid) {
+                    this.computerMove();
+                } else {
+                    this.setState({ status: 'Not a valid move. Try again.' });
+                }
+            });
+        });
+    }
+
+    computerMove = () => {
+        const { state, signature } = this.state;
+        this.setState({ status: 'Waiting for computer to move...' });
+        fetch('http://localhost:8090/api/penultima/computer-move', {
+            method: 'POST',
+            body: JSON.stringify({
+                startState: state,
+                signature,
+            }),
+            headers: { 'Content-type': 'application/json' },
+        }).then(response => {
+            response.json().then(body => {
+                this.setState({
+                    state: body.endState,
+                    signature: body.signature,
+                    computerLastMove: body.move,
+                    status: 'Your move.',
                 });
             });
         });

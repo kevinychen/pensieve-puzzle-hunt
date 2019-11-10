@@ -5,10 +5,12 @@ import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
 import java.security.Signature;
+import java.util.concurrent.TimeUnit;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Preconditions;
+import com.google.common.util.concurrent.Uninterruptibles;
 
 public class PenultimaResource implements PenultimaService {
 
@@ -59,6 +61,7 @@ public class PenultimaResource implements PenultimaService {
         verify(request.getStartState(), request.getSignature());
 
         // TODO
+        Uninterruptibles.sleepUninterruptibly(1, TimeUnit.SECONDS);
         Move move = new Move(new Location(0, 0), new Location(0, 1));
         BoardState state = request.getStartState().toBuilder()
                 .playerTurnToMove(true)
