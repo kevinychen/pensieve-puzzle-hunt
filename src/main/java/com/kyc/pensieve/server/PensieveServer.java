@@ -1,5 +1,12 @@
 package com.kyc.pensieve.server;
 
+import java.util.EnumSet;
+
+import javax.servlet.DispatcherType;
+import javax.servlet.FilterRegistration;
+
+import org.eclipse.jetty.servlets.CrossOriginFilter;
+
 import com.kyc.pensieve.server.blind.BlindResource;
 import com.kyc.pensieve.server.penultima.PenultimaResource;
 
@@ -23,6 +30,13 @@ public class PensieveServer extends Application<Configuration> {
 
     @Override
     public void run(Configuration configuration, Environment environment) throws Exception {
+        // TODO remove
+        FilterRegistration.Dynamic cors = environment.servlets().addFilter("CORS", CrossOriginFilter.class);
+        cors.setInitParameter("allowedOrigins", "*");
+        cors.setInitParameter("allowedHeaders", "*");
+        cors.setInitParameter("allowedMethods", "OPTIONS,GET,PUT,POST,DELETE,HEAD");
+        cors.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
+
         environment.jersey().setUrlPattern("/api/*");
         environment.jersey().register(new BlindResource());
         environment.jersey().register(new PenultimaResource());

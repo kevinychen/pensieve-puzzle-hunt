@@ -7,10 +7,14 @@ import HTML5Backend from 'react-dnd-html5-backend'
 
 function GridSquare(props) {
     const {
-        isPlayerWhite,
+        state: {
+            playerWhite,
+            playerTurnToMove,
+        },
         rowNum,
         colNum,
         piece,
+        playerMove,
     } = props;
 
     const [{ isDragging }, drag] = useDrag({
@@ -21,13 +25,14 @@ function GridSquare(props) {
     });
     const [{ isOver }, drop] = useDrop({
 		accept: 'piece',
-		drop: ({startRow, startCol}) => console.log(startRow + " " + startCol + " " + rowNum + " " + colNum),
+		drop: ({startRow, startCol}) => playerMove(startRow, startCol, rowNum, colNum),
 		collect: monitor => ({
 			isOver: !!monitor.isOver(),
 		}),
 	});
 
-    const canDrag = isPlayerWhite && piece !== piece.toUpperCase() || !isPlayerWhite && piece !== piece.toLowerCase();
+    const canDrag = playerTurnToMove &&
+        (playerWhite && piece !== piece.toUpperCase() || !playerWhite && piece !== piece.toLowerCase());
     return (
         <span
             ref={drop}
@@ -66,14 +71,15 @@ class GridRow extends React.Component {
 class Grid extends React.Component {
 
     render() {
-        const { grid, ...props } = this.props;
+        const { state, ...props } = this.props;
+        const { grid } = state;
         if (!grid) {
             return null;
         }
         return (
             <DndProvider backend={HTML5Backend}>
                 <div className="grid">
-                    {grid.map((row, rowNum) => <GridRow key={rowNum} rowNum={rowNum} row={row} {...props} />)}
+                    {grid.map((row, rowNum) => <GridRow key={rowNum} rowNum={rowNum} row={row} state={state} {...props} />)}
                 </div>
             </DndProvider>
         );
@@ -85,25 +91,27 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isPlayerWhite: true,
-            grid: ['  n', ' nn', 'n  '],
-            isPlayerTurnToMove: true,
+            state: {
+                playerWhite: true,
+                grid: undefined,
+                playerTurnToMove: true,
+            },
             signature: undefined,
+            isMoveValid: undefined,
         };
     }
 
     componentDidMount() {
-        const { isPlayerWhite } = this.state;
-        fetch('/api/penultima/start', {
+        const { state: { playerWhite } } = this.state;
+        // TODO use relative URIs
+        fetch('http://localhost:8090/api/penultima/start', {
             method: 'POST',
-            body: JSON.stringify({ isPlayerWhite }),
+            body: JSON.stringify({ playerWhite }),
             headers: { 'Content-type': 'application/json' },
         }).then(response => {
             response.json().then(body => {
                 this.setState({
-                    isPlayerWhite: body.state.isPlayerWhite,
-                    grid: body.state.grid,
-                    isPlayerTurnToMove: body.state.isPlayerTurnToMove,
+                    state: body.state,
                     signature: body.signature,
                 });
             });
@@ -118,10 +126,34 @@ class App extends React.Component {
                     <span><i>flavor text here</i></span>
                 </div>
                 <div className="board-container">
-                    <Grid {...this.state} />
+                    <Grid {...this.state} playerMove={this.playerMove} />
                 </div>
             </div>
         );
+    }
+
+    playerMove = (startRow, startCol, endRow, endCol) => {
+        const { state, signature } = this.state;
+        fetch('http://localhost:8090/api/penultima/player-move', {
+            method: 'POST',
+            body: JSON.stringify({
+                startState: state,
+                signature,
+                move: {
+                    start: { row: startRow, col: startCol },
+                    end: { row: endRow, col: endCol },
+                },
+            }),
+            headers: { 'Content-type': 'application/json' },
+        }).then(response => {
+            response.json().then(body => {
+                this.setState({
+                    isMoveValid: body.isValid,
+                    state: body.endState,
+                    signature: body.signature,
+                });
+            });
+        });
     }
 }
 

@@ -20,7 +20,7 @@ public interface PenultimaService {
     @Data
     public static class StartRequest {
 
-        private final boolean isPlayerWhite;
+        private final boolean playerWhite;
     }
 
     @Data

@@ -15,9 +15,9 @@ import lombok.Data;
 @Data
 public class BoardState {
 
-    private final boolean isPlayerWhite;
+    private final boolean playerWhite;
     private final char[][] grid;
-    private final boolean isPlayerTurnToMove;
+    private final boolean playerTurnToMove;
 
     @JsonIgnore
     public Map<Move, BoardState> getMoves() {
@@ -25,7 +25,7 @@ public class BoardState {
     }
 
     private Map<Move, BoardState> getMoves(boolean validateCheck) {
-        boolean whiteToPlay = isPlayerWhite == isPlayerTurnToMove;
+        boolean whiteToPlay = playerWhite == playerTurnToMove;
 
         Map<Move, BoardState> moves = new HashMap<>();
         for (int row = 0; row < grid.length; row++)
@@ -40,7 +40,7 @@ public class BoardState {
     }
 
     private Map<Move, BoardState> getMoves(Location start, boolean validateCheck) {
-        boolean whiteToPlay = isPlayerWhite == isPlayerTurnToMove;
+        boolean whiteToPlay = playerWhite == playerTurnToMove;
 
         Map<Move, BoardState> moves = getMovesWithoutValidatingCheck(start);
         if (validateCheck) {
@@ -137,14 +137,14 @@ public class BoardState {
         newGrid[move.getStart().getRow()][move.getStart().getCol()] = ' ';
         return toBuilder()
                 .grid(newGrid)
-                .isPlayerTurnToMove(!isPlayerTurnToMove)
+                .playerTurnToMove(!playerTurnToMove)
                 .build();
     }
 
     private char[][] copyGrid() {
         char[][] newGrid = new char[grid.length][];
         for (int i = 0; i < grid.length; i++) {
-            grid[i] = new char[grid[i].length];
+            newGrid[i] = new char[grid[i].length];
             for (int j = 0; j < grid[i].length; j++)
                 newGrid[i][j] = grid[i][j];
         }

@@ -36,9 +36,9 @@ public class PenultimaResource implements PenultimaService {
                 {'r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'},
         };
         BoardState state = BoardState.builder()
-                .isPlayerWhite(request.isPlayerWhite())
+                .playerWhite(request.isPlayerWhite())
                 .grid(grid)
-                .isPlayerTurnToMove(request.isPlayerWhite())
+                .playerTurnToMove(request.isPlayerWhite())
                 .build();
         return new StartResponse(state, sign(state));
     }
@@ -47,10 +47,9 @@ public class PenultimaResource implements PenultimaService {
     public PlayerMoveResponse playerMove(PlayerMoveRequest request) {
         BoardState startState = request.getStartState();
         verify(startState, request.getSignature());
-        Preconditions.checkArgument(startState.isPlayerTurnToMove());
 
         BoardState endState = startState.getMoves().get(request.getMove());
-        return endState != null
+        return startState.isPlayerTurnToMove() && endState != null
                 ? new PlayerMoveResponse(true, endState, sign(endState))
                 : new PlayerMoveResponse(false, startState, request.getSignature());
     }
@@ -62,7 +61,7 @@ public class PenultimaResource implements PenultimaService {
         // TODO
         Move move = new Move(new Location(0, 0), new Location(0, 1));
         BoardState state = request.getStartState().toBuilder()
-                .isPlayerTurnToMove(true)
+                .playerTurnToMove(true)
                 .build();
         return new ComputerMoveResponse(move, state, sign(state));
     }
