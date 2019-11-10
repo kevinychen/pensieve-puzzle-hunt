@@ -1,4 +1,4 @@
-package com.kyc.pensieve.server;
+package com.kyc.pensieve.server.puzzle3;
 
 import java.util.List;
 
@@ -11,10 +11,10 @@ import javax.ws.rs.core.MediaType;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@Path("/")
+@Path("/puzzle3")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public interface PensieveService {
+public interface Puzzle3Service {
 
     @POST
     @Path("/answer")

@@ -1,5 +1,7 @@
 package com.kyc.pensieve.server;
 
+import com.kyc.pensieve.server.puzzle3.Puzzle3Resource;
+
 import io.dropwizard.Application;
 import io.dropwizard.Configuration;
 import io.dropwizard.assets.AssetsBundle;
@@ -21,6 +23,6 @@ public class PensieveServer extends Application<Configuration> {
     @Override
     public void run(Configuration configuration, Environment environment) throws Exception {
         environment.jersey().setUrlPattern("/api/*");
-        environment.jersey().register(new PensieveResource());
+        environment.jersey().register(new Puzzle3Resource());
     }
 }

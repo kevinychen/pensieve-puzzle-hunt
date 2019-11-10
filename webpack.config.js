@@ -5,7 +5,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: 'development',
-    entry: './web/index.js',
+    entry: {
+        index: './web/index.js',
+        puzzle3: './web/puzzle3/index.js',
+    },
 
     output: {
         filename: '[name].[hash].js',
@@ -15,8 +18,14 @@ module.exports = {
     plugins: [
         new webpack.ProgressPlugin(),
         new HtmlWebpackPlugin({
+            filename: 'index.html',
             template: 'web/index.html',
-            inlineSource: '.(js|css)$'
+            chunks: ['index'],
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'puzzle3.html',
+            template: 'web/index.html',
+            chunks: ['puzzle3'],
         }),
     ],
 

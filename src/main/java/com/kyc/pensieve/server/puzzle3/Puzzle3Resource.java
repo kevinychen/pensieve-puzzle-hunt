@@ -1,4 +1,4 @@
-package com.kyc.pensieve.server;
+package com.kyc.pensieve.server.puzzle3;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,7 +8,7 @@ import java.util.Set;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.io.Files;
 
-public class PensieveResource implements PensieveService {
+public class Puzzle3Resource implements Puzzle3Service {
 
     private final String ANSWER = "BANISHED";
     private final int N = ANSWER.length();
@@ -19,7 +19,7 @@ public class PensieveResource implements PensieveService {
 
     private final Set<String> words;
 
-    public PensieveResource() throws IOException {
+    public Puzzle3Resource() throws IOException {
         words = ImmutableSet.copyOf(Files.readLines(new File("./twl.txt"), StandardCharsets.UTF_8));
     }
 
