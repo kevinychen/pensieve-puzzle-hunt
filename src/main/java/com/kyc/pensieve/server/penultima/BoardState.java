@@ -42,10 +42,6 @@ public class BoardState {
     private Map<Move, BoardState> getMoves(Location start, boolean validateCheck) {
         boolean whiteToPlay = playerWhite == playerTurnToMove;
 
-        boolean isImmobilized = false; // TODO
-        if (isImmobilized)
-            return ImmutableMap.of();
-
         Map<Move, BoardState> moves = getMovesWithoutValidatingCheck(start);
         if (validateCheck) {
             moves = ImmutableMap.copyOf(Maps.filterValues(
@@ -60,6 +56,14 @@ public class BoardState {
 
     private Map<Move, BoardState> getMovesWithoutValidatingCheck(Location start) {
         char piece = grid[start.getRow()][start.getCol()];
+
+        for (int dRow = -1; dRow <= 1; dRow++)
+            for (int dCol = -1; dCol <= 1; dCol++)
+                if (isEnemyPiece(piece, start.getRow() + dRow, start.getCol() + dCol)
+                        && grid[start.getRow() + dRow][start.getCol() + dCol] == 'Q') {
+                    return ImmutableMap.of(); // immobilized
+                }
+
         switch (piece) {
             case 'r': // Rook
                 return getMovesInAllDirections(start, 0, 1, Integer.MAX_VALUE, true);
@@ -90,8 +94,8 @@ public class BoardState {
                 return getMovesForOvertaker(start);
             case 'Q': // Immobilizer
                 return ImmutableMap.<Move, BoardState>builder()
-                        .putAll(getMovesInAllDirections(start, 0, 1, 1, false))
-                        .putAll(getMovesInAllDirections(start, 1, 1, 1, false))
+                        .putAll(getMovesInAllDirections(start, 0, 1, Integer.MAX_VALUE, false))
+                        .putAll(getMovesInAllDirections(start, 1, 1, Integer.MAX_VALUE, false))
                         .build();
             case 'K': // King
                 return ImmutableMap.<Move, BoardState>builder()
@@ -144,7 +148,7 @@ public class BoardState {
         for (int row = 0; row < grid.length; row++)
             for (int col = 0; col < grid[row].length; col++) {
                 if ((start.getRow() + start.getCol() + row + col) % 2 == 1 && grid[row][col] == ' '
-                        || Math.abs(start.getRow() - row) + Math.abs(start.getCol() - col) == 1 && isEnemyPiece(piece, grid[row][col])) {
+                        || Math.abs(start.getRow() - row) + Math.abs(start.getCol() - col) == 1 && isEnemyPiece(piece, row, col)) {
                     Move move = new Move(start, new Location(row, col));
                     moves.put(move, simpleMove(move, Optional.empty()));
                 }
@@ -164,8 +168,7 @@ public class BoardState {
             moves.putAll(getMovesInDirection(start, direction, 0, 2, false));
         }
         for (int sideDirection = -1; sideDirection <= 1; sideDirection += 2)
-            if (inBounds(start.getRow() + direction, start.getCol() + sideDirection)
-                    && isEnemyPiece(piece, grid[start.getRow() + direction][start.getCol() + sideDirection])) {
+            if (isEnemyPiece(piece, start.getRow() + direction, start.getCol() + sideDirection)) {
                 Move move = new Move(start, new Location(start.getRow() + direction, start.getCol() + sideDirection));
                 moves.put(move, simpleMove(move, Optional.empty()));
             }
@@ -190,7 +193,7 @@ public class BoardState {
                             break;
                         if (grid[row][col] != ' ') {
                             if (hopped) {
-                                if (isEnemyPiece(piece, grid[row][col])) {
+                                if (isEnemyPiece(piece, row, col)) {
                                     Move move = new Move(start, new Location(row, col));
                                     moves.put(move, simpleMove(move, Optional.empty()));
                                 }
@@ -217,7 +220,7 @@ public class BoardState {
             for (int dCol = -1; dCol <= 1; dCol++)
                 if ((dRow != 0 || dCol != 0)
                         && inBounds(start.getRow() + 2 * dRow, start.getCol() + 2 * dCol)
-                        && isEnemyPiece(piece, grid[start.getRow() + dRow][start.getCol() + dCol])
+                        && isEnemyPiece(piece, start.getRow() + dRow, start.getCol() + dCol)
                         && grid[start.getRow() + 2 * dRow][start.getCol() + 2 * dCol] == ' ') {
                     Move move = new Move(start, new Location(start.getRow() + 2 * dRow, start.getCol() + 2 * dCol));
                     moves.put(move, simpleMove(move, Optional.of(new Location(start.getRow() + dRow, start.getCol() + dCol))));
@@ -264,13 +267,16 @@ public class BoardState {
         return Optional.empty();
     }
 
-    private boolean inBounds(int row, int col) {
-        return row >= 0 && row < grid.length && col >= 0 && col < grid[row].length;
+    private boolean isEnemyPiece(char piece, int row, int col) {
+        if (!inBounds(row, col)) {
+            return false;
+        }
+        if (piece == ' ' || grid[row][col] == ' ')
+            return false;
+        return Character.isUpperCase(piece) ^ Character.isUpperCase(grid[row][col]);
     }
 
-    private static boolean isEnemyPiece(char piece, char otherPiece) {
-        if (piece == ' ' || otherPiece == ' ')
-            return false;
-        return Character.isUpperCase(piece) ^ Character.isUpperCase(otherPiece);
+    private boolean inBounds(int row, int col) {
+        return row >= 0 && row < grid.length && col >= 0 && col < grid[row].length;
     }
 }
