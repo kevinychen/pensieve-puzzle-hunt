@@ -8,6 +8,7 @@ module.exports = {
     entry: {
         index: './web/index.js',
         puzzle3: './web/puzzle3/index.js',
+        puzzle5: './web/puzzle5/index.js',
     },
 
     output: {
@@ -26,6 +27,11 @@ module.exports = {
             filename: 'puzzle3.html',
             template: 'web/index.html',
             chunks: ['puzzle3'],
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'puzzle5.html',
+            template: 'web/index.html',
+            chunks: ['puzzle5'],
         }),
     ],
 

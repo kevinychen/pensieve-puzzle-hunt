@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 
@@ -18,6 +19,7 @@ public class BoardState {
     private final char[][] grid;
     private final boolean isPlayerTurnToMove;
 
+    @JsonIgnore
     public Map<Move, BoardState> getMoves() {
         return getMoves(true);
     }

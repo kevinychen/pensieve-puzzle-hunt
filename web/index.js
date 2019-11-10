@@ -5,6 +5,7 @@ class App extends React.Component {
         return (
             <ul>
                 <li><a href="puzzle3.html">Puzzle 3</a></li>
+                <li><a href="puzzle5.html">Puzzle 5</a></li>
             </ul>
         )
     }

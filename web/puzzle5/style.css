@@ -1,0 +1,90 @@
+
+#app {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    margin-left: -460px;
+    width: 920px;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 36px;
+}
+
+.header {
+    font-size: 16px;
+    margin-bottom: 60px;
+}
+
+.grid {
+    border: 1px solid black;
+    display: inline-block;
+}
+
+.grid-row {
+    height: 64px;
+}
+
+.square {
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+    background-size: contain;
+}
+
+.white {
+    background-color: white;
+}
+
+.black {
+    background-color: lightgray;
+}
+
+.piece-R {
+    background-image: url("./black-rook.png");
+}
+
+.piece-N {
+    background-image: url("./black-knight.png");
+}
+
+.piece-B {
+    background-image: url("./black-bishop.png");
+}
+
+.piece-Q {
+    background-image: url("./black-queen.png");
+}
+
+.piece-K {
+    background-image: url("./black-king.png");
+}
+
+.piece-P {
+    background-image: url("./black-pawn.png");
+}
+
+.piece-r {
+    background-image: url("./white-rook.png");
+}
+
+.piece-n {
+    background-image: url("./white-knight.png");
+}
+
+.piece-b {
+    background-image: url("./white-bishop.png");
+}
+
+.piece-q {
+    background-image: url("./white-queen.png");
+}
+
+.piece-k {
+    background-image: url("./white-king.png");
+}
+
+.piece-p {
+    background-image: url("./white-pawn.png");
+}
