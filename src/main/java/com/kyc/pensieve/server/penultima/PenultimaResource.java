@@ -5,6 +5,7 @@ import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
 import java.security.Signature;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -47,13 +48,16 @@ public class PenultimaResource implements PenultimaService {
 
     @Override
     public PlayerMoveResponse playerMove(PlayerMoveRequest request) {
-        BoardState startState = request.getStartState();
-        verify(startState, request.getSignature());
+        BoardState state = request.getStartState();
+        verify(state, request.getSignature());
 
-        BoardState endState = startState.getMoves().get(request.getMove());
-        return startState.isPlayerTurnToMove() && endState != null
-                ? new PlayerMoveResponse(true, endState, sign(endState))
-                : new PlayerMoveResponse(false, startState, request.getSignature());
+        Optional<MoveWithEffects> allowedMove = state.getMoves().stream()
+                .filter(move -> move.getMove().equals(request.getMove()))
+                .findAny();
+        boolean isValid = state.isPlayerTurnToMove() && allowedMove.isPresent();
+        if (isValid)
+            state.apply(allowedMove.get());
+        return new PlayerMoveResponse(isValid, state, sign(state));
     }
 
     @Override
