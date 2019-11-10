@@ -1,4 +1,4 @@
-package com.kyc.pensieve.server.puzzle5;
+package com.kyc.pensieve.server.penultima;
 
 import java.util.HashMap;
 import java.util.Map;

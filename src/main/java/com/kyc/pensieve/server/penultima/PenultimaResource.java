@@ -1,4 +1,4 @@
-package com.kyc.pensieve.server.puzzle5;
+package com.kyc.pensieve.server.penultima;
 
 import java.security.GeneralSecurityException;
 import java.security.KeyPair;
@@ -10,12 +10,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Preconditions;
 
-public class Puzzle5Resource implements Puzzle5Service {
+public class PenultimaResource implements PenultimaService {
 
     private final KeyPair keyPair;
     private final ObjectMapper mapper;
 
-    public Puzzle5Resource() throws NoSuchAlgorithmException {
+    public PenultimaResource() throws NoSuchAlgorithmException {
         KeyPairGenerator kpg = KeyPairGenerator.getInstance("RSA");
         kpg.initialize(1024);
 

@@ -98,7 +98,7 @@ class App extends React.Component {
         if (e.key === 'Enter') {
             const newWord = e.target.value.trim().toUpperCase();
             const newWords = [newWord, ...words];
-            fetch('/api/puzzle3/answer', {
+            fetch('/api/blind/answer', {
                 method: 'POST',
                 body: JSON.stringify({ words: newWords }),
                 headers: { 'Content-type': 'application/json' },

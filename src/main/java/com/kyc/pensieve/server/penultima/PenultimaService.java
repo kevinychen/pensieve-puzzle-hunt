@@ -1,4 +1,4 @@
-package com.kyc.pensieve.server.puzzle5;
+package com.kyc.pensieve.server.penultima;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -8,10 +8,10 @@ import javax.ws.rs.core.MediaType;
 
 import lombok.Data;
 
-@Path("/puzzle5")
+@Path("/penultima")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public interface Puzzle5Service {
+public interface PenultimaService {
 
     @POST
     @Path("/start")

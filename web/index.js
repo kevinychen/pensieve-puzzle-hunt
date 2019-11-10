@@ -4,8 +4,8 @@ class App extends React.Component {
     render() {
         return (
             <ul>
-                <li><a href="puzzle3.html">Puzzle 3</a></li>
-                <li><a href="puzzle5.html">Puzzle 5</a></li>
+                <li><a href="blind.html">Blind Lights Out</a></li>
+                <li><a href="penultima.html">Penultima</a></li>
             </ul>
         )
     }

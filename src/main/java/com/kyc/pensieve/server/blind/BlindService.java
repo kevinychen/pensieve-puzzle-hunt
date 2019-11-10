@@ -1,4 +1,4 @@
-package com.kyc.pensieve.server.puzzle3;
+package com.kyc.pensieve.server.blind;
 
 import java.util.List;
 
@@ -11,10 +11,10 @@ import javax.ws.rs.core.MediaType;
 import lombok.Builder;
 import lombok.Data;
 
-@Path("/puzzle3")
+@Path("/blind")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public interface Puzzle3Service {
+public interface BlindService {
 
     @POST
     @Path("/answer")

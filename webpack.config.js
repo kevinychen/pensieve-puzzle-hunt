@@ -7,8 +7,8 @@ module.exports = {
     mode: 'development',
     entry: {
         index: './web/index.js',
-        puzzle3: './web/puzzle3/index.js',
-        puzzle5: './web/puzzle5/index.js',
+        blind: './web/blind/index.js',
+        penultima: './web/penultima/index.js',
     },
 
     output: {
@@ -24,14 +24,14 @@ module.exports = {
             chunks: ['index'],
         }),
         new HtmlWebpackPlugin({
-            filename: 'puzzle3.html',
+            filename: 'blind.html',
             template: 'web/index.html',
-            chunks: ['puzzle3'],
+            chunks: ['blind'],
         }),
         new HtmlWebpackPlugin({
-            filename: 'puzzle5.html',
+            filename: 'penultima.html',
             template: 'web/index.html',
-            chunks: ['puzzle5'],
+            chunks: ['penultima'],
         }),
     ],
 

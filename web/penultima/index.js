@@ -58,7 +58,7 @@ class App extends React.Component {
 
     componentDidMount() {
         const { isPlayerWhite } = this.state;
-        fetch('/api/puzzle5/start', {
+        fetch('/api/penultima/start', {
             method: 'POST',
             body: JSON.stringify({ isPlayerWhite }),
             headers: { 'Content-type': 'application/json' },
