@@ -28,7 +28,7 @@ public class BoardState {
 
     @JsonIgnore
     public Optional<MoveWithEffects> getBestMove() {
-        return getMoves().stream().findAny();
+        return minimax(3).move;
     }
 
     @JsonIgnore
@@ -275,6 +275,49 @@ public class BoardState {
         return moves;
     }
 
+    private ScoredMove minimax(int depth) {
+        if (depth == 0)
+            return new ScoredMove(Optional.empty(), score());
+
+        boolean whiteToPlay = playerWhite == playerTurnToMove;
+        MoveWithEffects bestMove = null;
+        double bestScore = whiteToPlay ? Double.NEGATIVE_INFINITY : Double.POSITIVE_INFINITY;
+        for (MoveWithEffects move : getMoves()) {
+            MoveWithEffects undoEffects = apply(move);
+            double score = minimax(depth - 1).getScore();
+            if (whiteToPlay && score > bestScore || !whiteToPlay && score < bestScore) {
+                bestMove = move;
+                bestScore = score;
+            }
+            apply(undoEffects);
+        }
+        return new ScoredMove(Optional.ofNullable(bestMove), bestScore);
+    }
+
+    private double score() {
+        double score = 0;
+
+        Map<Character, Double> pieceValues = ImmutableMap.<Character, Double>builder()
+                .put('R', -10.)
+                .put('N', -9.)
+                .put('B', -3.)
+                .put('Q', -18.)
+                .put('K', -1001.)
+                .put('P', -1.)
+                .put('r', 11.)
+                .put('n', 4.)
+                .put('b', 10.)
+                .put('q', 14.)
+                .put('k', 999.)
+                .put('p', 1.)
+                .build();
+        for (char[] row : grid)
+            for (char piece : row)
+                score += pieceValues.getOrDefault(piece, 0.);
+
+        return score;
+    }
+
     private Optional<Location> find(char piece) {
         for (int row = 0; row < grid.length; row++)
             for (int col = 0; col < grid[row].length; col++)
@@ -294,5 +337,12 @@ public class BoardState {
 
     private boolean inBounds(int row, int col) {
         return row >= 0 && row < grid.length && col >= 0 && col < grid[row].length;
+    }
+
+    @Data
+    private static final class ScoredMove {
+
+        private final Optional<MoveWithEffects> move;
+        private final double score;
     }
 }
