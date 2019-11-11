@@ -27,6 +27,11 @@ public class BoardState {
     }
 
     @JsonIgnore
+    public Optional<MoveWithEffects> getBestMove() {
+        return getMoves().stream().findAny();
+    }
+
+    @JsonIgnore
     public MoveWithEffects apply(MoveWithEffects moveWithEffects) {
         Move move = moveWithEffects.getMove();
         char piece = grid[move.getStart().getRow()][move.getStart().getCol()];
@@ -242,7 +247,7 @@ public class BoardState {
                             } else {
                                 hopped = true;
                             }
-                        } else if (hopped) {
+                        } else if (!hopped) {
                             moves.add(MoveWithEffects.builder().move(new Move(start, new Location(row, col))).build());
                         }
                     }
@@ -269,7 +274,6 @@ public class BoardState {
                 }
         return moves;
     }
-
 
     private Optional<Location> find(char piece) {
         for (int row = 0; row < grid.length; row++)

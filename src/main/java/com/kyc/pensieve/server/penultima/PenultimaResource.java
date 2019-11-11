@@ -6,12 +6,10 @@ import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
 import java.security.Signature;
 import java.util.Optional;
-import java.util.concurrent.TimeUnit;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Preconditions;
-import com.google.common.util.concurrent.Uninterruptibles;
 
 public class PenultimaResource implements PenultimaService {
 
@@ -62,15 +60,16 @@ public class PenultimaResource implements PenultimaService {
 
     @Override
     public ComputerMoveResponse computerMove(ComputerMoveRequest request) {
-        verify(request.getStartState(), request.getSignature());
+        BoardState state = request.getStartState();
+        verify(state, request.getSignature());
+        Preconditions.checkArgument(!state.isPlayerTurnToMove());
 
-        // TODO
-        Uninterruptibles.sleepUninterruptibly(1, TimeUnit.SECONDS);
-        Move move = new Move(new Location(0, 0), new Location(0, 1));
-        BoardState state = request.getStartState().toBuilder()
-                .playerTurnToMove(true)
-                .build();
-        return new ComputerMoveResponse(move, state, sign(state));
+        return state.getBestMove()
+            .map(move -> {
+                state.apply(move);
+                return new ComputerMoveResponse(move.getMove(), state, sign(state));
+            })
+            .orElseGet(() -> new ComputerMoveResponse(null, state, request.getSignature()));
     }
 
     private byte[] sign(BoardState state) {

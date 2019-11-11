@@ -15,7 +15,7 @@ function GridSquare(props) {
         colNum,
         piece,
         computerLastMove,
-        waiting,
+        canMove,
         playerMove,
     } = props;
 
@@ -33,7 +33,7 @@ function GridSquare(props) {
 		}),
 	});
 
-    const canDrag = playerTurnToMove && !waiting &&
+    const canDrag = playerTurnToMove && canMove &&
         (playerWhite && piece !== piece.toUpperCase() || !playerWhite && piece !== piece.toLowerCase());
     return (
         <span
@@ -43,8 +43,7 @@ function GridSquare(props) {
                 (rowNum + colNum) % 2 == 0 ? 'white' : 'black',
                 { 'can-drop': isOver },
                 { 'computer-last-move': computerLastMove &&
-                    (computerLastMove.start.row === rowNum && computerLastMove.start.col === colNum
-                        || computerLastMove.end.row === rowNum && computerLastMove.end.col === colNum)
+                        computerLastMove.end.row === rowNum && computerLastMove.end.col === colNum,
                 },
             )}
         >
@@ -105,7 +104,7 @@ class App extends React.Component {
             signature: undefined,
             computerLastMove: undefined,
             status: 'Your move.',
-            waiting: false,
+            canMove: false,
         };
     }
 
@@ -121,6 +120,7 @@ class App extends React.Component {
                 this.setState({
                     state: body.state,
                     signature: body.signature,
+                    canMove: true,
                 });
                 if (!body.state.playerTurnToMove) {
                     this.computerMove();
@@ -149,7 +149,7 @@ class App extends React.Component {
 
     playerMove = (startRow, startCol, endRow, endCol) => {
         const { state, signature } = this.state;
-        this.setState({ status: '...', waiting: true });
+        this.setState({ status: '...', canMove: false });
         fetch('http://localhost:8090/api/penultima/player-move', {
             method: 'POST',
             body: JSON.stringify({
@@ -166,7 +166,7 @@ class App extends React.Component {
                 this.setState({
                     state: body.endState,
                     signature: body.signature,
-                    waiting: false,
+                    canMove: true,
                 });
                 if (body.valid) {
                     this.computerMove();
@@ -193,7 +193,8 @@ class App extends React.Component {
                     state: body.endState,
                     signature: body.signature,
                     computerLastMove: body.move,
-                    status: 'Your move.',
+                    status: body.move ? 'Your move.' : 'You win!',
+                    canMove: !!body.move,
                 });
             });
         });
