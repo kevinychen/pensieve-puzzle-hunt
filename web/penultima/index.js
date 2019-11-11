@@ -101,7 +101,7 @@ class App extends React.Component {
         super(props);
         this.state = {
             state: {
-                playerWhite: true, // TODO allow to play as black?
+                playerWhite: true,
                 grid: undefined,
                 playerTurnToMove: true,
             },
@@ -115,8 +115,7 @@ class App extends React.Component {
 
     componentDidMount() {
         const { state: { playerWhite } } = this.state;
-        // TODO use relative URIs
-        fetch('http://localhost:8090/api/penultima/start', {
+        fetch('/api/penultima/start', {
             method: 'POST',
             body: JSON.stringify({ playerWhite }),
             headers: { 'Content-type': 'application/json' },
@@ -158,7 +157,7 @@ class App extends React.Component {
     playerMove = (startRow, startCol, endRow, endCol) => {
         const { state, signature } = this.state;
         this.setState({ status: '...', canMove: false });
-        fetch('http://localhost:8090/api/penultima/player-move', {
+        fetch('/api/penultima/player-move', {
             method: 'POST',
             body: JSON.stringify({
                 startState: state,
@@ -188,7 +187,7 @@ class App extends React.Component {
     computerMove = () => {
         const { state, signature } = this.state;
         this.setState({ status: 'Waiting for computer to move...' });
-        fetch('http://localhost:8090/api/penultima/computer-move', {
+        fetch('/api/penultima/computer-move', {
             method: 'POST',
             body: JSON.stringify({
                 startState: state,

@@ -286,7 +286,7 @@ public class BoardState {
         for (MoveWithEffects move : getMoves()) {
             MoveWithEffects undoEffects = apply(move);
             double score = minimax(depth - 1).getScore();
-            if (whiteToPlay && score > bestScore || !whiteToPlay && score < bestScore) {
+            if (whiteToPlay && score >= bestScore || !whiteToPlay && score <= bestScore) {
                 bestMove = move;
                 bestScore = score;
             }
