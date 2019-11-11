@@ -17,6 +17,7 @@ function GridSquare(props) {
         computerLastMove,
         canMove,
         playerMove,
+        solution,
     } = props;
 
     const [{ isDragging }, drag] = useDrag({
@@ -58,7 +59,7 @@ function GridSquare(props) {
                     piece === ' ' ? undefined : 'piece-' + piece,
                 )}
             >
-                {""}
+                <div class="solution-char">{solution ? solution[rowNum][colNum] : ""}</div>
             </span>
         </span>
     );

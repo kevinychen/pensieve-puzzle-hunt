@@ -69,7 +69,19 @@ public class PenultimaResource implements PenultimaService {
                 state.apply(move);
                 return new ComputerMoveResponse(move.getMove(), state, sign(state), null);
             })
-            .orElseGet(() -> new ComputerMoveResponse(null, state, request.getSignature(), "ABECEDARIANCHESS"));
+            .orElseGet(() -> {
+                char[][] solution = {
+                        { 'A', 'B', 'E', 'C', 'E', 'D', 'A', 'R' },
+                        { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+                        { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+                        { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+                        { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+                        { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+                        { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
+                        { 'I', 'A', 'N', 'C', 'H', 'E', 'S', 'S' },
+                };
+                return new ComputerMoveResponse(null, state, request.getSignature(), solution);
+            });
     }
 
     private byte[] sign(BoardState state) {

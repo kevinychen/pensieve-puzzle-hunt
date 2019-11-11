@@ -54,6 +54,15 @@
     width: 60px;
     height: 60px;
     background-size: contain;
+    position: relative;
+}
+
+.solution-char {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    font-size: 52px;
+    color: rgba(255, 180, 0, 0.7);
 }
 
 .can-drag {
