@@ -43,25 +43,33 @@
     display: inline-block;
     width: 64px;
     height: 64px;
+    border: 2px solid transparent;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }
 
 .piece {
     display: inline-block;
-    width: 64px;
-    height: 64px;
+    width: 60px;
+    height: 60px;
     background-size: contain;
 }
 
 .can-drag {
-    cursor: 'move',
+    cursor: grab;
 }
 
 .can-drag:hover {
-    background-color: yellow !important;
+    border: 2px solid yellow;
+}
+
+.is-dragging {
+    cursor: grabbing;
 }
 
 .can-drop {
-    background-color: yellow !important;
+    border: 2px solid yellow;
 }
 
 .white {
@@ -73,7 +81,7 @@
 }
 
 .computer-last-move {
-    background-color: green !important;
+    border: 2px solid green;
 }
 
 .piece-R {

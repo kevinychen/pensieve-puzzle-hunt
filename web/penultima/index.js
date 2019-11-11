@@ -41,9 +41,13 @@ function GridSquare(props) {
             className={classNames(
                 'square',
                 (rowNum + colNum) % 2 == 0 ? 'white' : 'black',
+                { 'can-drag': !isDragging && canDrag },
+                { 'is-dragging': isDragging },
                 { 'can-drop': isOver },
-                { 'computer-last-move': computerLastMove &&
-                        computerLastMove.end.row === rowNum && computerLastMove.end.col === colNum,
+                {
+                    'computer-last-move': computerLastMove &&
+                        (computerLastMove.start.row === rowNum && computerLastMove.start.col === colNum ||
+                            computerLastMove.end.row === rowNum && computerLastMove.end.col === colNum),
                 },
             )}
         >
@@ -52,7 +56,6 @@ function GridSquare(props) {
                 className={classNames(
                     'piece',
                     piece === ' ' ? undefined : 'piece-' + piece,
-                    { 'can-drag': !isDragging && canDrag },
                 )}
             >
                 {""}
@@ -97,7 +100,7 @@ class App extends React.Component {
         super(props);
         this.state = {
             state: {
-                playerWhite: true,
+                playerWhite: true, // TODO allow to play as black?
                 grid: undefined,
                 playerTurnToMove: true,
             },
@@ -105,6 +108,7 @@ class App extends React.Component {
             computerLastMove: undefined,
             status: 'Your move.',
             canMove: false,
+            solution: undefined,
         };
     }
 
@@ -198,6 +202,7 @@ class App extends React.Component {
                     computerLastMove: body.move,
                     status: body.move ? 'Your move.' : 'You win!',
                     canMove: !!body.move,
+                    solution: body.solution,
                 });
             });
         });

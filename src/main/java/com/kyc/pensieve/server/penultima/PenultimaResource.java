@@ -67,9 +67,9 @@ public class PenultimaResource implements PenultimaService {
         return state.getBestMove()
             .map(move -> {
                 state.apply(move);
-                return new ComputerMoveResponse(move.getMove(), state, sign(state));
+                return new ComputerMoveResponse(move.getMove(), state, sign(state), null);
             })
-            .orElseGet(() -> new ComputerMoveResponse(null, state, request.getSignature()));
+            .orElseGet(() -> new ComputerMoveResponse(null, state, request.getSignature(), "ABECEDARIANCHESS"));
     }
 
     private byte[] sign(BoardState state) {

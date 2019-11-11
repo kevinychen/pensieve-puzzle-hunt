@@ -67,5 +67,6 @@ public interface PenultimaService {
         private final Move move;
         private final BoardState endState;
         private final byte[] signature;
+        private final String solution;
     }
 }
