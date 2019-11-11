@@ -143,6 +143,9 @@ class App extends React.Component {
                 <div className="board-container">
                     <Grid {...this.state} playerMove={this.playerMove} />
                 </div>
+                <div className="symbols">
+                    <span>♜ ♖ ♗ ♕ ♝ ♞ ♕ ♛ ♗ ♘</span>
+                </div>
             </div>
         );
     }

@@ -123,6 +123,7 @@ public class BoardState {
                 return ImmutableSet.<MoveWithEffects>builder()
                         .addAll(getMovesInDirection(start, -1, -1, Integer.MAX_VALUE, true))
                         .addAll(getMovesInDirection(start, -1, 1, Integer.MAX_VALUE, true))
+                        .addAll(getMovesInDirection(start, 1, 0, Integer.MAX_VALUE, true))
                         .addAll(getMovesInAllDirections(start, 0, 1, 1, true))
                         .addAll(getMovesInDirection(start, 1, -1, 2, true))
                         .addAll(getMovesInDirection(start, 1, 1, 2, true))
