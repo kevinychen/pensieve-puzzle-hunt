@@ -139,7 +139,7 @@ class App extends React.Component {
             <div>
                 <div className="header">
                     <h1>Penultima</h1>
-                    <span><i>Wizard's chess is more difficult when you don't know the rules.</i></span>
+                    <span><i>{"Wizard's chess is more difficult when you don't know the rules, and the opponent's pieces are even stranger than your own!"}</i></span>
                 </div>
                 <div className="status">
                     {status}

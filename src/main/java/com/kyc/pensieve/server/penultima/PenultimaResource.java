@@ -72,13 +72,13 @@ public class PenultimaResource implements PenultimaService {
             .orElseGet(() -> {
                 char[][] solution = {
                         { 'A', 'B', 'E', 'C', 'E', 'D', 'A', 'R' },
+                        { 'I', 'A', 'N', ' ', 'B', 'I', 'G', ' ' },
+                        { 'C', 'H', 'E', 'S', 'S', ' ', ' ', ' ' },
                         { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
                         { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
                         { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
                         { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
                         { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-                        { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-                        { 'I', 'A', 'N', 'C', 'H', 'E', 'S', 'S' },
                 };
                 return new ComputerMoveResponse(null, state, request.getSignature(), solution);
             });
