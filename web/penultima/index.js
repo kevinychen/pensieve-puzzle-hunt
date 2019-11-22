@@ -59,7 +59,7 @@ function GridSquare(props) {
                     piece === ' ' ? undefined : 'piece-' + piece,
                 )}
             >
-                <div class="solution-char">{solution ? solution[rowNum][colNum] : ""}</div>
+                <div className="solution-char">{solution ? solution[rowNum][colNum] : ""}</div>
             </span>
         </span>
     );
