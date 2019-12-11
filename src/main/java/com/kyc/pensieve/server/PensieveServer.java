@@ -13,6 +13,7 @@ public class PensieveServer extends Application<Configuration> {
 
     public static void main(String[] args) throws Exception {
         System.setProperty("dw.server.applicationConnectors[0].port", "8090");
+        System.setProperty("dw.server.adminConnectors[0].port", "8091");
         new PensieveServer().run("server");
     }
 
