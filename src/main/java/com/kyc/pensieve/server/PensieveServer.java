@@ -19,6 +19,7 @@ public class PensieveServer extends Application<Configuration> {
 
     @Override
     public void initialize(Bootstrap<Configuration> bootstrap) {
+        bootstrap.addBundle(new AssetsBundle("/files", "/files", "index.html", "files"));
         bootstrap.addBundle(new AssetsBundle("/assets", "/", "index.html"));
     }
 

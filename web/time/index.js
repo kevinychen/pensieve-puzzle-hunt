@@ -20,16 +20,20 @@ const GlobalStyle = createGlobalStyle`
 class Puzzle extends React.Component {
 
     render() {
-        const { content, isLast } = this.props;
+        const { content, isLast, numBoxes } = this.props;
         return (
             <div>
                 <div className="puzzle">
                     <div>{content}</div>
-                    <div className="box"></div>
+                    {[...new Array(numBoxes || 1)].map(i => <div className="box"></div>)}
                 </div>
                 {isLast ? undefined : <hr className="line"></hr>}
             </div>
         );
+    }
+
+    renderBox() {
+        return <div className="box"></div>;
     }
 }
 
@@ -37,6 +41,8 @@ import Image1 from "./image1.png";
 import Image2 from "./image2.png";
 import Song5 from "./song5.mp3";
 import Image5 from "./image5.png";
+import Image7 from "./image7.png";
+import Image9 from "./image9.png";
 
 class App extends React.Component {
 
@@ -53,14 +59,14 @@ class App extends React.Component {
                     content={<img src={Image1} />}
                 />
                 <Puzzle
-                    content={<img className="white" src={Image2} />}
+                    content={<img className="narrow white" src={Image2} />}
                 />
                 <Puzzle
-                    content={<pre className="black">k7/pp1PPPP1/4nn1R/2p5/1qP5/8/2B1b3/2K5 w - -</pre>}
+                    content={<pre className="narrow black">k7/pp1PPPP1/4nn1R/2p5/1qP5/8/2B1b3/2K5 w - -</pre>}
                 />
                 <Puzzle
                     content={
-                        <div className="white">
+                        <div className="narrow white">
                             <pre className="align-left">
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e = 2915<br /><br />
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;N = 1119074311891796995289754233565191872847433722288682636047<br /><br />
@@ -68,14 +74,27 @@ class App extends React.Component {
                             </pre>
                         </div>
                     }
+                    numBoxes={3}
                 />
                 <Puzzle
                     content={
                         <div>
-                            <div className="block"><a href={Song5}>A melody</a></div>
+                            <div className="block"><a href={Song5}>An encore</a></div>
                             <div><img src={Image5} /></div>
                         </div>
                     }
+                />
+                <Puzzle
+                    content={<img className="narrow" src={"./files/Wonderland.png"} />}
+                />
+                <Puzzle
+                    content={<img className="bordered" src={Image7} />}
+                />
+                <Puzzle
+                    content={<img src={"./files/d7778742049d.png"} />}
+                />
+                <Puzzle
+                    content={<img className="narrow" src={Image9} />}
                 />
             </div>
         );
