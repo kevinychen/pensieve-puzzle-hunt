@@ -62,7 +62,7 @@ class App extends React.Component {
                     content={<img className="narrow white" src={Image2} />}
                 />
                 <Puzzle
-                    content={<pre className="narrow black">k7/pp1PPPP1/4nn1R/2p5/1qP5/8/2B1b3/2K5 w - -</pre>}
+                    content={<pre className="narrow black">2kr4/pbp5/1p6/3p2p1/3N2P1/1PP1QB2/5PP1/6RK b - -</pre>}
                 />
                 <Puzzle
                     content={
