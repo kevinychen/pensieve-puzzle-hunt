@@ -69,8 +69,8 @@ class App extends React.Component {
                         <div className="narrow white">
                             <pre className="align-left">
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e = 2915<br /><br />
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;N = 1119074311891796995289754233565191872847433722288682636047<br /><br />
-                                ciphertext = 1089728221641517441027889073471513892274150231803034840285
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;N = 145185003465065910011450192349009309151<br /><br />
+                                ciphertext = 115222396423564993230828050014743162641
                             </pre>
                         </div>
                     }
