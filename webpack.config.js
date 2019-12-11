@@ -9,6 +9,7 @@ module.exports = {
         index: './web/index.js',
         blind: './web/blind/index.js',
         penultima: './web/penultima/index.js',
+        time: './web/time/index.js',
     },
 
     output: {
@@ -33,6 +34,11 @@ module.exports = {
             template: 'web/index.html',
             chunks: ['penultima'],
         }),
+        new HtmlWebpackPlugin({
+            filename: 'time.html',
+            template: 'web/index.html',
+            chunks: ['time'],
+        }),
     ],
 
     module: {
@@ -54,7 +60,7 @@ module.exports = {
                 ],
             },
             {
-                test: /\.(png|svg|jpg|gif)$/,
+                test: /\.(png|svg|jpg|gif|otf|mp3)$/,
                 use: [
                     'file-loader',
                 ],
