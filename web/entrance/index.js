@@ -1,4 +1,4 @@
-//import "./style.css";
+import "./style.css";
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -12,42 +12,45 @@ class App extends React.Component {
     }
 
     render() {
+        const { guess } = this.state;
         return (
             <div>
-                Enter password:
-                <input
-                    type="text"
-                    onChange={e => this.setState({ guess: e.target.value })}
-                />
-                <button
-                    onClick={() => this.submit()}
-                >
-                    {"Enter"}
-                </button>
+                <div className="door"></div>
+                <div className="password-label">Password:</div>
+                <div className="password-input">
+                    <input
+                        type="text"
+                        onChange={e => this.setState({ guess: e.target.value.toUpperCase().replace(/[^A-Z ]/, '') })}
+                        onKeyPress={this.onKeyPress}
+                        value={guess}
+                    />
+                </div>
             </div>
         );
     }
 
-    submit = () => {
+    onKeyPress = e => {
         const { guess } = this.state;
-        fetch('/api/guess/enter', {
-            method: 'POST',
-            body: JSON.stringify({
-                guess,
-            }),
-            headers: { 'Content-type': 'application/json' },
-            credentials: 'include',
-        }).then(response => {
-            response.json().then(body => {
-                if (body.correct) {
-                    // TODO can we get Set-Cookie header to work here?
-                    document.cookie = "TEAM_XXXXXXX_PUZZLES=" + body.answer;
-                    window.location = '/';
-                } else {
-                    alert("Incorrect");
-                }
+        if (guess && e.key === 'Enter') {
+            fetch('/api/guess/enter', {
+                method: 'POST',
+                body: JSON.stringify({
+                    guess,
+                }),
+                headers: { 'Content-type': 'application/json' },
+                credentials: 'include',
+            }).then(response => {
+                response.json().then(body => {
+                    if (body.correct) {
+                        // TODO can we get Set-Cookie header to work here?
+                        document.cookie = "TEAM_XXXXXXX_PUZZLES=" + body.answer;
+                        window.location = '/';
+                    } else {
+                        alert("Incorrect");
+                    }
+                });
             });
-        });
+        }
     }
 }
 

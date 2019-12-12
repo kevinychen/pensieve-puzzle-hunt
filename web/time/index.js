@@ -1,22 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createGlobalStyle } from 'styled-components';
 import { Wrapper } from "../wrapper";
 import "./style.css";
-
-import GlennSansBold from "./BwGlennSans-Bold.otf";
-import GlennSansMedium from "./BwGlennSans-Medium.otf";
-const GlobalStyle = createGlobalStyle`
-    @font-face {
-        font-family: 'GlennSansBold';
-        src: url('${GlennSansBold}');
-    }
-
-    @font-face {
-        font-family: 'GlennSans';
-        src: url('${GlennSansMedium}');
-    }
-`;
 
 class Puzzle extends React.Component {
 
@@ -53,7 +38,6 @@ class App extends React.Component {
                 title="The Time Turner"
                 flavortext={<h3>solved by <b>Team Runpeng</b></h3>}
             >
-                <GlobalStyle />
                 <hr></hr>
                 <p className="flavor-text">Time to do this again!</p>
 

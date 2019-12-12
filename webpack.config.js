@@ -31,7 +31,7 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             filename: 'entrance.html',
-            template: 'web/index.html',
+            template: 'web/entrance.html',
             chunks: ['entrance'],
         }),
         new HtmlWebpackPlugin({

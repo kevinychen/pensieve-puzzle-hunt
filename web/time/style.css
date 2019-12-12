@@ -1,3 +1,13 @@
+@font-face {
+    font-family: 'GlennSansBold';
+    src: url('./BwGlennSans-Bold.otf');
+}
+
+@font-face {
+    font-family: 'GlennSans';
+    src: url('./BwGlennSans-Medium.otf');
+}
+
 html, body {
     margin: 0;
     text-align: center;

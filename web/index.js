@@ -1,16 +1,7 @@
 import * as classNames from "classnames";
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createGlobalStyle } from 'styled-components';
 import "./style.css";
-
-import Potter from "./potter.ttf";
-const GlobalStyle = createGlobalStyle`
-    @font-face {
-        font-family: 'Potter';
-        src: url('${Potter}');
-    }
-`;
 
 class App extends React.Component {
 
@@ -28,7 +19,6 @@ class App extends React.Component {
             <div
                 className={classNames("main", isHoveringOverPensieve ? "pensieve-hover" : "pensieve")}
             >
-                <GlobalStyle />
                 {this.renderName()}
                 {this.renderPensieveHoverRegion()}
                 {this.renderWisp("wisp1", "blind.html", "Blind Lights Out")}
