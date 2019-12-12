@@ -10,6 +10,7 @@ module.exports = {
         blind: './web/blind/index.js',
         penultima: './web/penultima/index.js',
         phone: './web/phone/index.js',
+        quidditch: './web/quidditch/index.js',
         sorting: './web/sorting/index.js',
         time: './web/time/index.js',
     },
@@ -40,6 +41,11 @@ module.exports = {
             filename: 'phone.html',
             template: 'web/index.html',
             chunks: ['phone'],
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'quidditch.html',
+            template: 'web/index.html',
+            chunks: ['quidditch'],
         }),
         new HtmlWebpackPlugin({
             filename: 'sorting.html',

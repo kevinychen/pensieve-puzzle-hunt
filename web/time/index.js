@@ -21,14 +21,14 @@ const GlobalStyle = createGlobalStyle`
 class Puzzle extends React.Component {
 
     render() {
-        const { content, isLast, numBoxes } = this.props;
+        const { content, numBoxes, isLast } = this.props;
         return (
             <div>
                 <div className="puzzle">
                     <div>{content}</div>
                     {[...new Array(numBoxes || 1)].map(i => <div className="box"></div>)}
+                    {isLast ? undefined : <hr className="line" />}
                 </div>
-                {isLast ? undefined : <hr className="line"></hr>}
             </div>
         );
     }
@@ -97,6 +97,7 @@ class App extends React.Component {
                 />
                 <Puzzle
                     content={<img className="narrow" src={Image9} />}
+                    isLast={true}
                 />
             </Wrapper>
         );

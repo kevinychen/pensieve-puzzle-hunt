@@ -9,6 +9,7 @@ class App extends React.Component {
                 <li><a href="blind.html">Blind Lights Out</a></li>
                 <li><a href="penultima.html">Penultima</a></li>
                 <li><a href="phone.html">Noisy Phone Line</a></li>
+                <li><a href="quidditch.html">Quidditch</a></li>
                 <li><a href="sorting.html">The Sorting Hat</a></li>
                 <li><a href="time.html">The Time Turner</a></li>
             </ul>

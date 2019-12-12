@@ -1,0 +1,64 @@
+
+#app {
+    margin-left: -500px;
+    width: 1000px;
+}
+
+.group {
+    margin: 20px;
+}
+
+.box {
+    background-image: url("./box.png");
+    background-size: contain;
+    width: 60px;
+    height: 60px;
+    margin: 10px 5px;
+    border: 1px solid black;
+    display: inline-block;
+}
+
+.players img {
+    height: 150px;
+    margin-right: 10px;
+    border: 1px solid black;
+}
+
+.player-boxes {
+    margin-bottom: 40px;
+}
+
+.player-boxes .box + .box {
+    margin-left: 50px;
+}
+
+.block {
+    margin: 20px;
+}
+
+.chasers img {
+    height: 120px;
+}
+
+.chasers .big {
+    font-size: 36px;
+    position: relative;
+    bottom: 50px;
+    display: inline-block;
+    padding: 20px;
+}
+
+.chasers .medium {
+    font-size: 18px;
+    position: relative;
+    bottom: 55px;
+}
+
+.chasers .box {
+    position: relative;
+    bottom: 20px;
+}
+
+.seeker img {
+    height: 300px;
+}

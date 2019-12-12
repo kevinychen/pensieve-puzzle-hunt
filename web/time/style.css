@@ -8,6 +8,7 @@ html, body {
     top: auto;
     left: auto;
     margin-left: auto;
+    margin-bottom: 0px;
     width: auto;
     background-image: url(./texture_bg_compress.jpg);
     background-repeat: repeat-y;
