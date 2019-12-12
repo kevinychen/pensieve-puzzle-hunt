@@ -1,7 +1,8 @@
-import "./style.css";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createGlobalStyle } from 'styled-components';
+import { Wrapper } from "../wrapper";
+import "./style.css";
 
 import GlennSansBold from "./BwGlennSans-Bold.otf";
 import GlennSansMedium from "./BwGlennSans-Medium.otf";
@@ -48,10 +49,11 @@ class App extends React.Component {
 
     render() {
         return (
-            <div>
+            <Wrapper
+                title="The Time Turner"
+                flavortext={<h3>solved by <b>Team Runpeng</b></h3>}
+            >
                 <GlobalStyle />
-                <h2>The Time Turner</h2>
-                <h3>solved by <b>Team Runpeng</b></h3>
                 <hr></hr>
                 <p className="flavor-text">Time to do this again!</p>
 
@@ -96,7 +98,7 @@ class App extends React.Component {
                 <Puzzle
                     content={<img className="narrow" src={Image9} />}
                 />
-            </div>
+            </Wrapper>
         );
     }
 }

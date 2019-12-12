@@ -2,6 +2,7 @@ import "./style.css";
 import * as classNames from "classnames";
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Wrapper } from "../wrapper";
 
 class Bulb extends React.Component {
 
@@ -57,11 +58,10 @@ class App extends React.Component {
     render() {
         const { states, words, complete } = this.state;
         return (
-            <div>
-                <div className="header">
-                    <h1>Blind Lights Out</h1>
-                    <span><i>The blind don't need light. Help them turn off all the lights, and they may reward you with a message of their own.</i></span>
-                </div>
+            <Wrapper
+                title="Blind Lights Out"
+                flavortext="The blind don't need light. Help them turn off all the lights, and they may reward you with a message of their own."
+            >
                 <div className="coins-panel">
                     {this.renderCoinPanel()}
                 </div>
@@ -80,7 +80,7 @@ class App extends React.Component {
                 <div className="history">
                     {words.map(word => <div>{word}</div>)}
                 </div>
-            </div>
+            </Wrapper>
         );
     }
 

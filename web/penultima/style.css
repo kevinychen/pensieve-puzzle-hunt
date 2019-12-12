@@ -1,22 +1,4 @@
 
-#app {
-    position: absolute;
-    top: 40px;
-    left: 50%;
-    margin-left: -460px;
-    width: 920px;
-    text-align: center;
-}
-
-.header h1 {
-    font-size: 36px;
-}
-
-.header {
-    font-size: 16px;
-    margin-bottom: 40px;
-}
-
 .status {
     margin-bottom: 20px;
 }

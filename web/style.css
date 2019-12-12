@@ -1,0 +1,17 @@
+#app {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    margin-left: -460px;
+    width: 920px;
+    text-align: center;
+}
+
+.header {
+    font-size: 16px;
+    margin-bottom: 60px;
+}
+
+.header h1 {
+    font-size: 36px;
+}

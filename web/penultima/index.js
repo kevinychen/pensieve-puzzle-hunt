@@ -4,6 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { DndProvider, useDrag, useDrop } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
+import { Wrapper } from "../wrapper";
 
 function GridSquare(props) {
     const {
@@ -136,11 +137,10 @@ class App extends React.Component {
     render() {
         const { status } = this.state;
         return (
-            <div>
-                <div className="header">
-                    <h1>Penultima</h1>
-                    <span><i>{"Wizard's chess is more difficult when you don't know the rules, and the opponent's pieces are even stranger than your own!"}</i></span>
-                </div>
+            <Wrapper
+                title="Penultima"
+                flavortext="Wizard's chess is more difficult when you don't know the rules, and the opponent's pieces are even stranger than your own!"
+            >
                 <div className="status">
                     {status}
                 </div>
@@ -150,7 +150,7 @@ class App extends React.Component {
                 <div className="symbols">
                     <span>♜ ♖ ♗ ♕ ♝ ♞ ♕ ♛ ♗ ♘</span>
                 </div>
-            </div>
+            </Wrapper>
         );
     }
 
