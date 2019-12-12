@@ -1,0 +1,13 @@
+
+.group {
+    margin: 50px;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+li {
+    padding: 2px;
+}

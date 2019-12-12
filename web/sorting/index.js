@@ -56,7 +56,7 @@ class App extends React.Component {
                         <tr>
                             <td>
                                 <h3>Gryffindor</h3>
-                                <ul className="unstyled">
+                                <ul>
                                     <li>◯ ① ◯ ◯</li>
                                     <li>◯ ◯ ④ &nbsp;&nbsp; ◯ ◯ ◯ ◯ ◯</li>
                                     <li>◯ ⑫ ◯ ◯ ◯</li>
@@ -64,7 +64,7 @@ class App extends React.Component {
                             </td>
                             <td>
                                 <h3>Hufflepuff</h3>
-                                <ul className="unstyled">
+                                <ul>
                                     <li>◯ ③ ◯</li>
                                     <li>◯ ⑦ ◯ ◯ ◯ ◯</li>
                                     <li>⑨ ◯ ◯ ◯ ◯ ◯ ◯ ◯</li>
@@ -74,7 +74,7 @@ class App extends React.Component {
                         <tr>
                             <td>
                                 <h3>Ravenclaw</h3>
-                                <ul className="unstyled">
+                                <ul>
                                     <li>◯ ◯ ◯ ② ◯ </li>
                                     <li>◯ ◯ ◯ ⑤</li>
                                     <li>◯ ⑧ ◯ ◯ ◯ ◯</li>
@@ -82,7 +82,7 @@ class App extends React.Component {
                             </td>
                             <td>
                                 <h3>Slytherin</h3>
-                                <ul className="unstyled">
+                                <ul>
                                     <li>◯ ◯ ⑥ ◯</li>
                                     <li>◯ ⑩</li>
                                     <li>◯ ⑪ ◯</li>
