@@ -12,9 +12,17 @@ html, body {
     width: 1012px;
     height: 680px;
     text-align: center;
-    background-image: url(./pensieve.jpg);
     background-size: cover;
     background-repeat: no-repeat;
+}
+
+.pensieve {
+    background-image: url(./pensieve.jpg);
+}
+
+.pensieve-hover {
+    background-image: url(./pensieve_hover.jpg);
+    cursor: pointer;
 }
 
 .name {
@@ -32,6 +40,13 @@ html, body {
  20px 5px 40px #CF77F390,
    0px 5px 40px #e0b0e090,
   -20px 5px 40px #fAe9fB90;
+}
+
+.clickable-pensieve {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 
 .wisp {

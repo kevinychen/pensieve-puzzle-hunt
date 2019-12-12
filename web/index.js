@@ -1,4 +1,5 @@
 import "./style.css";
+import * as classNames from "classnames";
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -8,14 +9,18 @@ class App extends React.Component {
         super(props);
         this.state = {
             name: '',
+            isHoveringOverPensieve: false,
         };
     }
 
     render() {
-        const { name } = this.state;
+        const { isHoveringOverPensieve } = this.state;
         return (
-            <div className="main">
+            <div
+                className={classNames("main", isHoveringOverPensieve ? "pensieve-hover" : "pensieve")}
+            >
                 {this.renderName()}
+                {this.renderPensieveHoverRegion()}
                 {this.renderWisp("wisp1", "blind.html", "Blind Lights Out")}
                 {this.renderWisp("wisp2", "penultima.html", "Penultima")}
                 {this.renderWisp("wisp3", "phone.html", "Noisy Phone Line")}
@@ -34,7 +39,26 @@ class App extends React.Component {
         }
     }
 
-    renderWisp = (id, href, name) => {
+    renderPensieveHoverRegion() {
+        return (
+            <svg
+                className="clickable-pensieve"
+                width="1012"
+                height="680"
+            >
+                <a href="pensieve.html">
+                    <polygon
+                        onMouseEnter={() => this.setState({ name: 'The Pensieve', isHoveringOverPensieve: true })}
+                        onMouseLeave={() => this.setState({ name: '', isHoveringOverPensieve: false })}
+                        points="40,440 140,550 250,620 360,650 640,650 770,620 890,550 990,440 520,500"
+                        fill-opacity="0"
+                    />
+                </a>
+            </svg>
+        );
+    }
+
+    renderWisp(id, href, name) {
         return (
             <a
                 id={id}
