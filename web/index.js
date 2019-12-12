@@ -1,7 +1,16 @@
-import "./style.css";
 import * as classNames from "classnames";
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createGlobalStyle } from 'styled-components';
+import "./style.css";
+
+import Potter from "./potter.ttf";
+const GlobalStyle = createGlobalStyle`
+    @font-face {
+        font-family: 'Potter';
+        src: url('${Potter}');
+    }
+`;
 
 class App extends React.Component {
 
@@ -19,6 +28,7 @@ class App extends React.Component {
             <div
                 className={classNames("main", isHoveringOverPensieve ? "pensieve-hover" : "pensieve")}
             >
+                <GlobalStyle />
                 {this.renderName()}
                 {this.renderPensieveHoverRegion()}
                 {this.renderWisp("wisp1", "blind.html", "Blind Lights Out")}
@@ -51,7 +61,7 @@ class App extends React.Component {
                         onMouseEnter={() => this.setState({ name: 'The Pensieve', isHoveringOverPensieve: true })}
                         onMouseLeave={() => this.setState({ name: '', isHoveringOverPensieve: false })}
                         points="40,440 140,550 250,620 360,650 640,650 770,620 890,550 990,440 520,500"
-                        fill-opacity="0"
+                        fillOpacity="0"
                     />
                 </a>
             </svg>

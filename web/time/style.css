@@ -1,6 +1,5 @@
 html, body {
     margin: 0;
-    font-family: 'GlennSans';
     text-align: center;
 }
 
@@ -9,11 +8,12 @@ html, body {
     left: auto;
     margin-left: auto;
     margin-bottom: 0px;
-    width: auto;
+    width: 100%;
     background-image: url(./texture_bg_compress.jpg);
     background-repeat: repeat-y;
     background-size: cover;
     background-position: center;
+    font-family: 'GlennSans';
 }
 
 .header {
@@ -102,4 +102,8 @@ a, a:visited {
     border-radius: 8px;
     background-color: #333;
     padding: 8px;
+}
+
+.puzzle4 {
+    width: 675px;
 }

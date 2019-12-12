@@ -13,7 +13,7 @@ class App extends React.Component {
             >
                 <div className="group"> 
                     <h2>First years</h2>
-                    <table className="first-years">
+                    <table className="first-years normal-text">
                         <tbody>
                             <tr>
                                 <td>
@@ -38,7 +38,7 @@ class App extends React.Component {
                                         <li>Area where circuses are held</li>
                                         <li>Biblical Magi</li>
                                         <li>Dystopian novel</li>
-                                        <li>If you land on Jail, you're ___</li>
+                                        <li>If you land on Jail, you're _____</li>
                                         <li>In modern times, we almost all have one</li>
                                         <li>Not a patriot</li>
                                         <li>One of the families in <i>To Kill a Mockingbird</i></li>
@@ -54,7 +54,7 @@ class App extends React.Component {
                 </div>
                 <div className="group">
                     <h2>Houses</h2>
-                    <table className="houses">
+                    <table className="houses normal-text">
                         <tbody>
                             <tr>
                                 <td>

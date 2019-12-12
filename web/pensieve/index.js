@@ -1,7 +1,7 @@
-import "./style.css";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Wrapper } from "../wrapper";
+import "./style.css";
 
 import Image1 from "./image1.png";
 import Image2 from "./image2.png";

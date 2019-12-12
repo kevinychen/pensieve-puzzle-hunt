@@ -1,20 +1,33 @@
+body {
+    background-image: url("./pensieve.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: black;
+}
+
 #app {
     position: absolute;
     top: 40px;
     left: 50%;
-    margin-left: -460px;
+    margin-left: -500px;
     width: 920px;
     text-align: center;
     margin-bottom: 40px;
+    font-family: "Potter";
+    font-size: 20px;
+    padding: 20px 40px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
 }
 
 .header {
-    font-size: 16px;
+    font-size: 20px;
     margin-bottom: 60px;
 }
 
 .header h1 {
-    font-size: 36px;
+    font-size: 40px;
 }
 
 table {
@@ -30,4 +43,8 @@ table {
     margin: 10px 5px;
     border: 1px solid black;
     display: inline-block;
+}
+
+.normal-text {
+    font-family: 'sans-serif';
 }

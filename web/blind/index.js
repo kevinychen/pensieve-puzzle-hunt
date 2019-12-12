@@ -77,7 +77,7 @@ class App extends React.Component {
                         disabled={complete}
                     />
                 </div>
-                <div className="history">
+                <div className="history normal-text">
                     {words.map(word => <div>{word}</div>)}
                 </div>
             </Wrapper>

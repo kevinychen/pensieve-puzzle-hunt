@@ -13,36 +13,40 @@ class App extends React.Component {
             >
                 <div className="group"> 
                     <h2>Sent</h2>
-                    <table>
-                        <tr>
-                            <td>
-                                <ul>
-                                    <li>Father of the piano (8)</li>
-                                    <li>Game company (8)</li>
-                                    <li>General in the 82nd Airborne Division (8)</li>
-                                    <li>Supplying (7)</li>
-                                    <li>Usmanov or Lisin, for example (8)</li>
-                                    <li>Watching something, or failing to watch something (9)</li>
-                                </ul>
-                            </td>
-                        </tr>
+                    <table className="normal-text">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ul>
+                                        <li>Father of the piano (8)</li>
+                                        <li>Game company (8)</li>
+                                        <li>General in the 82nd Airborne Division (8)</li>
+                                        <li>Supplying (7)</li>
+                                        <li>Usmanov or Lisin, for example (8)</li>
+                                        <li>Watching something, or failing to watch something (9)</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
                 <div className="group"> 
                     <h2>Received</h2>
-                    <table>
-                        <tr>
-                            <td>
-                                <ul>
-                                    <li>A drinking boot, in Australia (5)</li>
-                                    <li>Beautiful palace (10)</li>
-                                    <li>Grief (6)</li>
-                                    <li>Ron thought this was embarassing (4)</li>
-                                    <li>"Take Watson, for example." "I ___ to." (6)</li>
-                                    <li>To flirt in Spanish (5)</li>
-                                </ul>
-                            </td>
-                        </tr>
+                    <table className="normal-text">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ul>
+                                        <li>A drinking boot, in Australia (5)</li>
+                                        <li>Beautiful palace (10)</li>
+                                        <li>Grief (6)</li>
+                                        <li>Ron thought this was embarassing (4)</li>
+                                        <li>"Take Watson, for example." "I _____ to." (6)</li>
+                                        <li>To flirt in Spanish (5)</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
             </Wrapper>

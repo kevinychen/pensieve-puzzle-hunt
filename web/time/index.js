@@ -68,7 +68,7 @@ class App extends React.Component {
                 />
                 <Puzzle
                     content={
-                        <div className="narrow white">
+                        <div className="puzzle4 white">
                             <pre className="align-left">
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e = 2915<br /><br />
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;N = 145185003465065910011450192349009309151<br /><br />
