@@ -9,6 +9,7 @@ module.exports = {
         index: './web/index.js',
         blind: './web/blind/index.js',
         penultima: './web/penultima/index.js',
+        sorting: './web/sorting/index.js',
         time: './web/time/index.js',
     },
 
@@ -33,6 +34,11 @@ module.exports = {
             filename: 'penultima.html',
             template: 'web/index.html',
             chunks: ['penultima'],
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'sorting.html',
+            template: 'web/index.html',
+            chunks: ['sorting'],
         }),
         new HtmlWebpackPlugin({
             filename: 'time.html',

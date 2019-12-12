@@ -1,0 +1,19 @@
+
+td {
+    width: 50%;
+    border: 1px black solid;
+}
+
+.first-years li {
+    padding: 2px;
+    text-align: left;
+}
+
+.houses ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.houses li {
+    font-size: 24px;
+}

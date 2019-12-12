@@ -5,6 +5,7 @@
     margin-left: -460px;
     width: 920px;
     text-align: center;
+    margin-bottom: 40px;
 }
 
 .header {
@@ -14,4 +15,9 @@
 
 .header h1 {
     font-size: 36px;
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;
 }
