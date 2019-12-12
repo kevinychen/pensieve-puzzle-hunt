@@ -13,6 +13,7 @@ module.exports = {
         quidditch: './web/quidditch/index.js',
         sorting: './web/sorting/index.js',
         time: './web/time/index.js',
+        pensieve: './web/pensieve/index.js',
     },
 
     output: {
@@ -56,6 +57,11 @@ module.exports = {
             filename: 'time.html',
             template: 'web/index.html',
             chunks: ['time'],
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'pensieve.html',
+            template: 'web/index.html',
+            chunks: ['pensieve'],
         }),
     ],
 

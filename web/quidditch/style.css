@@ -8,16 +8,6 @@
     margin: 20px;
 }
 
-.box {
-    background-image: url("./box.png");
-    background-size: contain;
-    width: 60px;
-    height: 60px;
-    margin: 10px 5px;
-    border: 1px solid black;
-    display: inline-block;
-}
-
 .players img {
     height: 150px;
     margin-right: 10px;

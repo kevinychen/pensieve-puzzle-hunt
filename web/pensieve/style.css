@@ -1,0 +1,21 @@
+
+.group {
+    margin-bottom: -30px;
+}
+
+img {
+    width: 125px;
+}
+
+.big {
+    font-size: 36px;
+    position: relative;
+    bottom: 50px;
+    display: inline-block;
+    padding: 20px;
+}
+
+.box {
+    position: relative;
+    bottom: 20px;
+}

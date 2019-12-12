@@ -12,6 +12,7 @@ class App extends React.Component {
                 <li><a href="quidditch.html">Quidditch</a></li>
                 <li><a href="sorting.html">The Sorting Hat</a></li>
                 <li><a href="time.html">The Time Turner</a></li>
+                <li><a href="pensieve.html">The Pensieve</a></li>
             </ul>
         )
     }
