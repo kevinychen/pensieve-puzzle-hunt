@@ -7,6 +7,7 @@ module.exports = {
     mode: 'development',
     entry: {
         index: './web/index.js',
+        entrance: './web/entrance/index.js',
         blind: './web/blind/index.js',
         penultima: './web/penultima/index.js',
         phone: './web/phone/index.js',
@@ -27,6 +28,11 @@ module.exports = {
             filename: 'index.html',
             template: 'web/index.html',
             chunks: ['index'],
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'entrance.html',
+            template: 'web/index.html',
+            chunks: ['entrance'],
         }),
         new HtmlWebpackPlugin({
             filename: 'blind.html',

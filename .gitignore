@@ -6,4 +6,5 @@
 /build/
 node_modules
 src/main/resources/assets
+data/state
 
