@@ -37,7 +37,7 @@ class App extends React.Component {
             <Wrapper
                 puzzleId="time"
                 title="The Time Turner"
-                flavortext={<h3>solved by <b>Team Runpeng</b></h3>}
+                flavortext={<h3>solved by <b>Team XXXXXXX</b></h3>}
             >
                 <hr></hr>
                 <p className="flavor-text">Time to do this again!</p>

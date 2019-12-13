@@ -15,14 +15,67 @@ html, body, #app {
     text-align: center;
 }
 
+.werewolf-header img {
+    height: 150px;
+    margin-bottom: 30px;
+}
+
+.werewolf-text {
+    font-family: Helvetica;
+    width: 550px;
+    margin: 20px auto;
+    color: white;
+}
+
+.werewolf-text h2 {
+    margin-bottom: 30px;
+}
+
+.werewolf-text p {
+    text-align: left;
+    line-height: 24px;
+}
+
+.werewolf-text .boom {
+    font-size: 48px;
+}
+
+.werewolf-sign img {
+    border: 1px solid gray;
+    width: 550px;
+}
+
+.werewolf-clues {
+    color: white;
+    width: 850px;
+    margin: 0 auto;
+    text-align: left;
+    font-family: Helvetica;
+    font-size: 18px;
+    border: 1px solid gray;
+    padding: 10px;
+}
+
+.hl {
+    color: red;
+    font-size: 20px;
+}
+
 .door {
     width: 800px;
     height: 550px;
     margin: 0 auto;
     margin-top: 50px;
-    background-image: url(./image1.png);
-    background-size: cover;
-    background-repeat: no-repeat;
+}
+
+.door img {
+    height: 100%;
+}
+
+.door.clickable:hover {
+    cursor: pointer;
+    width: 804px;
+    height: 554px;
 }
 
 .password-label {
@@ -35,6 +88,13 @@ html, body, #app {
     height: 40px;
     font-size: 36px;
     margin: 10px;
+    margin-bottom: 40px;
+}
+
+.password-input input::placeholder {
+    font-size: 32px;
+    font-family: 'Potter';
+    text-align: center;
 }
 
 .message {
