@@ -1,6 +1,20 @@
 accounts:
   - CHOCOPIE
   - PENSIEVEOFERATOSTHENESX
+introMessage: |
+  "CHOCO PIE!" you exclaim.<br/><br/>
+
+  The door opens slowly, by itself.<br/><br/>
+
+  As you cautiously walk through, you see a small office on the other side, with small tables scattered about.
+  On one table is a pointy black hat, ragged and wrinkled as if it has seen many years.
+  On another table are a few bright fire-orange feathers, as if from a noble bird, scattered among pieces of dried ash.
+  The entire space looks magical, like it belonged to a wise headmaster of magic.<br/><br/>
+
+  But one particular thing catches your eye.
+  In the corner is a silver metal basin, decorated with runes and bright stones, and filled with a wispy gas.
+  You walk closer and see small wisps floating inside, beckoning you to plunge your head into them and discover their secret.
+  Perhaps this is the key to regaining the memory of who you are and where you came from.
 answers:
   blind: BANISHED
   penultima: PROTECTION

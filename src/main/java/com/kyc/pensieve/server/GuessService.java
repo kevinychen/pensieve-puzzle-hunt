@@ -9,6 +9,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import lombok.Builder;
 import lombok.Data;
 
 @Path("/guess")
@@ -38,11 +39,17 @@ public interface GuessService {
     }
 
     @Data
+    @Builder
     public static class GuessResponse {
 
-        private final boolean correct;
-        private final boolean blocked;
-        private final String answer;
+        @Builder.Default
+        private final boolean correct = false;
+        @Builder.Default
+        private final boolean blocked = false;
+        @Builder.Default
+        private final String answer = null;
+        @Builder.Default
+        private final String message = null;
     }
 
     @GET

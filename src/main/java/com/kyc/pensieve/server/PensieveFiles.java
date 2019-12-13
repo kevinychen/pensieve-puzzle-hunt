@@ -52,6 +52,7 @@ public class PensieveFiles {
     public static class Config {
 
         private final Set<String> accounts;
+        private final String introMessage;
         private final Map<String, String> answers;
     }
 

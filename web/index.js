@@ -1,6 +1,7 @@
 import * as classNames from "classnames";
 import React from 'react';
 import ReactDOM from 'react-dom';
+import "./global.css";
 import "./style.css";
 
 class App extends React.Component {
@@ -17,7 +18,7 @@ class App extends React.Component {
         const { isHoveringOverPensieve } = this.state;
         return (
             <div
-                className={classNames("main", isHoveringOverPensieve ? "pensieve-hover" : "pensieve")}
+                className={classNames("main", "fade-in", isHoveringOverPensieve ? "pensieve-hover" : "pensieve")}
             >
                 {this.renderName()}
                 {this.renderPensieveHoverRegion()}

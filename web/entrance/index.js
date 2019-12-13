@@ -1,3 +1,4 @@
+import "../global.css";
 import "./style.css";
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -8,6 +9,7 @@ class App extends React.Component {
         super(props);
         this.state = {
             guess: '',
+            message: undefined,
         };
     }
 
@@ -25,6 +27,7 @@ class App extends React.Component {
                         value={guess}
                     />
                 </div>
+                {this.maybeRenderMessage()}
             </div>
         );
     }
@@ -46,13 +49,26 @@ class App extends React.Component {
                     } else if (body.correct) {
                         // TODO can we get Set-Cookie header to work here?
                         document.cookie = "TEAM_XXXXXXX_PUZZLES=" + body.answer;
-                        window.location = '/';
+                        this.setState({ message: body.message });
                     } else {
                         alert("Incorrect");
                     }
                 });
             });
         }
+    }
+
+    maybeRenderMessage() {
+        const { message } = this.state;
+        if (!message) {
+            return undefined;
+        }
+        return (
+            <div className="message fade-in">
+                <div dangerouslySetInnerHTML={{ __html: message }} />
+                <a href="/"><button className="continue-button">Continue</button></a>
+            </div>
+        );
     }
 }
 

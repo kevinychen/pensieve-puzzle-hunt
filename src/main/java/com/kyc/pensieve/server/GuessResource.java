@@ -17,6 +17,7 @@ public class GuessResource implements GuessService {
     @Override
     public GuessResponse enter(EnterRequest request) {
         String account = answerize(request.getGuess());
+        Config config = PensieveFiles.getConfig();
         AtomicBoolean blocked = new AtomicBoolean();
         AtomicBoolean correct = new AtomicBoolean();
         PensieveFiles.updateState(state -> {
@@ -25,7 +26,7 @@ public class GuessResource implements GuessService {
                 blocked.set(true);
                 return state;
             }
-            if (PensieveFiles.getConfig().getAccounts().contains(account)) {
+            if (config.getAccounts().contains(account)) {
                 correct.set(true);
             } else {
                 globalGuessTimes.add(Instant.now().getEpochSecond());
@@ -35,11 +36,15 @@ public class GuessResource implements GuessService {
             return new State(state.getAccounts(), globalGuessTimes);
         });
         if (blocked.get())
-            return new GuessResponse(false, true, null);
+            return GuessResponse.builder().blocked(true).build();
         else if (correct.get())
-            return new GuessResponse(true, false, account);
+            return GuessResponse.builder()
+                    .correct(true)
+                    .answer(account)
+                    .message(config.getIntroMessage())
+                    .build();
         else
-            return new GuessResponse(false, false, null);
+            return GuessResponse.builder().build();
     }
 
     @Override
@@ -71,11 +76,11 @@ public class GuessResource implements GuessService {
             return new State(accounts, state.getGlobalGuessTimes());
         });
         if (blocked.get())
-            return new GuessResponse(false, true, null);
+            return GuessResponse.builder().blocked(true).build();
         else if (correct.get()) {
-            return new GuessResponse(true, false, guess);
+            return GuessResponse.builder().correct(true).answer(guess).build();
         } else
-            return new GuessResponse(false, false, null);
+            return GuessResponse.builder().build();
     }
 
     @Override
