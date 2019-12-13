@@ -11,19 +11,22 @@
 html, body {
     margin: 0;
     text-align: center;
+    font-family: 'GlennSans';
 }
 
-#app {
-    top: auto;
-    left: auto;
+.puzzle {
+    background-color: #00000000;
+    border: none;
+    width: 100%;
+    left: 0;
+    top: 0;
     margin-left: auto;
     margin-bottom: 0px;
-    width: 100%;
+    padding: 0;
     background-image: url(./texture_bg_compress.jpg);
     background-repeat: repeat-y;
     background-size: cover;
     background-position: center;
-    font-family: 'GlennSans';
 }
 
 .header {
@@ -62,7 +65,7 @@ h3 b {
     margin-bottom: 40px;
 }
 
-.puzzle {
+.puzzle-block {
     margin: 30px;
 }
 

@@ -8,9 +8,10 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-color: black;
+    font-family: "Potter";
 }
 
-#app {
+.puzzle {
     position: absolute;
     top: 40px;
     left: 50%;
@@ -18,7 +19,6 @@ body {
     width: 920px;
     text-align: center;
     margin-bottom: 40px;
-    font-family: "Potter";
     font-size: 20px;
     padding: 20px 40px;
     background-color: white;
@@ -52,4 +52,26 @@ table {
 
 .normal-text {
     font-family: 'sans-serif';
+}
+
+.submit-answer {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 22px;
+}
+
+.submit-answer .answer-label {
+    color: white;
+}
+
+.submit-answer input {
+    width: 150px;
+    height: 22px;
+    font-size: 18px;
+}
+
+.submit-answer .solved {
+    color: green;
+    font-size: 32px;
 }

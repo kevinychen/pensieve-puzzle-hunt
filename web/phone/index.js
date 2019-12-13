@@ -8,6 +8,7 @@ class App extends React.Component {
     render() {
         return (
             <Wrapper
+                puzzleId="phone"
                 title="Noisy Phone Line"
                 flavortext="On the table is a phone with several voicemail messages. Unfortunately, the phone line seems to be a bit noisy, and the messages are all cut off."
             >

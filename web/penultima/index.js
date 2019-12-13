@@ -138,6 +138,7 @@ class App extends React.Component {
         const { status } = this.state;
         return (
             <Wrapper
+                puzzleId="penultima"
                 title="Penultima"
                 flavortext="Wizard's chess is more difficult when you don't know the rules, and the opponent's pieces are even stranger than your own!"
             >

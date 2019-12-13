@@ -4,7 +4,6 @@ import java.util.Map;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -29,12 +28,11 @@ public interface GuessService {
 
     @POST
     @Path("/")
-    GuessResponse guess(@HeaderParam("Authorization") String account, GuessRequest request);
+    GuessResponse guess(GuessRequest request);
 
     @Data
     public static class GuessRequest {
 
-        private final String account;
         private final String puzzle;
         private final String guess;
     }
@@ -49,5 +47,5 @@ public interface GuessService {
 
     @GET
     @Path("/solved")
-    Map<String, String> solved(@HeaderParam("Authorization") String account);
+    Map<String, String> solved();
 }

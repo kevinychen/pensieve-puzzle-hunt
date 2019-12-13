@@ -24,6 +24,7 @@ class App extends React.Component {
     render() {
         return (
             <Wrapper
+                puzzleId="quidditch"
                 title="Quidditch"
                 flavortext="There are seven players on a Quidditch team."
             >

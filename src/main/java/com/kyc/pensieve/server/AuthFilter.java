@@ -19,6 +19,12 @@ public class AuthFilter implements Filter {
     public static String COOKIE_NAME = "TEAM_XXXXXXX_PUZZLES";
     public static String ENTRANCE = "/entrance.html";
 
+    private static ThreadLocal<String> accountThreadLocal = new ThreadLocal<>();
+
+    public static String getAccount() {
+        return accountThreadLocal.get();
+    }
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
     }
@@ -31,18 +37,25 @@ public class AuthFilter implements Filter {
             ((HttpServletResponse) response).sendRedirect(ENTRANCE);
     }
 
-    private boolean canContinue(HttpServletRequest request) {
+    private static boolean canContinue(HttpServletRequest request) {
         String path = request.getRequestURI();
-        if (!path.equals("/") && (path.equals(ENTRANCE) || !path.endsWith(".html")))
+        Optional<String> cookie = findCookie(request);
+        if (cookie.isPresent() && path.startsWith("/api"))
+            accountThreadLocal.set(cookie.get());
+        if (cookie.isPresent())
             return true;
+        return !path.equals("/") && (path.equals(ENTRANCE) || !path.endsWith(".html"));
+    }
+
+    private static Optional<String> findCookie(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
         if (cookies == null)
-            return false;
-        Optional<String> pensieveCookie = Stream.of(cookies)
-                .filter(cookie -> cookie.getName().equalsIgnoreCase(COOKIE_NAME))
-                .map(cookie -> cookie.getValue().toUpperCase())
-                .findFirst();
-        return pensieveCookie.isPresent() && PensieveFiles.getConfig().getAccounts().contains(pensieveCookie.get());
+            return Optional.empty();
+        return Stream.of(cookies)
+            .filter(cookie -> cookie.getName().equalsIgnoreCase(COOKIE_NAME))
+            .map(cookie -> cookie.getValue().toUpperCase())
+            .findFirst()
+            .flatMap(cookie -> PensieveFiles.getConfig().getAccounts().contains(cookie) ? Optional.of(cookie) : Optional.empty());
     }
 
     @Override

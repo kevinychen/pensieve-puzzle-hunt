@@ -2,6 +2,8 @@ package com.kyc.pensieve.server;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -27,8 +29,9 @@ public class PensieveFiles {
     }
 
     public static State getState() {
+        if (!STATE_FILE.exists())
+            return new State(new HashMap<>(), new ArrayList<>());
         try {
-            STATE_FILE.createNewFile();
             return MAPPER.readValue(STATE_FILE, State.class);
         } catch (IOException e) {
             throw new RuntimeException(e);

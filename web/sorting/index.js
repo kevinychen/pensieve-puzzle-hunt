@@ -8,6 +8,7 @@ class App extends React.Component {
     render() {
         return (
             <Wrapper
+                puzzleId="sorting"
                 title="The Sorting Hat"
                 flavortext="Sort the new students into their houses."
             >

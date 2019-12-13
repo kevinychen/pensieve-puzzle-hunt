@@ -9,7 +9,7 @@ class Puzzle extends React.Component {
         const { content, numBoxes, isLast } = this.props;
         return (
             <div>
-                <div className="puzzle">
+                <div className="puzzle-block">
                     <div>{content}</div>
                     {[...new Array(numBoxes || 1)].map(i => <div className="box"></div>)}
                     {isLast ? undefined : <hr className="line" />}
@@ -35,6 +35,7 @@ class App extends React.Component {
     render() {
         return (
             <Wrapper
+                puzzleId="time"
                 title="The Time Turner"
                 flavortext={<h3>solved by <b>Team Runpeng</b></h3>}
             >

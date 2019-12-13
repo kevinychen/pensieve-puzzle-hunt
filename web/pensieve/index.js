@@ -25,6 +25,7 @@ class App extends React.Component {
     render() {
         return (
             <Wrapper
+                puzzleId="pensieve"
                 title="The Pensieve"
                 flavortext="After extracting all the memories from the Pensieve, you finally have what you need to
                     spell out your final goal. There's no time to wander; you need to move quickly."

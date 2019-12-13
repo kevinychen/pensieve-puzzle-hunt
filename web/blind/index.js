@@ -59,6 +59,7 @@ class App extends React.Component {
         const { states, words, complete } = this.state;
         return (
             <Wrapper
+                puzzleId="blind"
                 title="Blind Lights Out"
                 flavortext="The blind don't need light. Help them turn off all the lights, and they may reward you with a message of their own."
             >
