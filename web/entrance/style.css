@@ -38,33 +38,6 @@ html, body, #app {
 }
 
 .message {
-    position: absolute;
-    width: 600px;
-    left: 50%;
-    top: 100px;
-    margin-left: -300px;
     height: 600px;
-    border: 4px green solid;
-    border-radius: 8px;
-    background-color: white;
-    font-size: 28px;
-    padding: 12px;
-    background-color: #d0d0d0;
-}
-
-.message div {
-    text-align: left;
-    margin-bottom: 20px;
-}
-
-.message button {
-    height: 40px;
-    margin: 0 auto;
-    font-family: "Potter";
-    font-size: 24px;
-    cursor: pointer;
-}
-
-.message button:hover {
-    font-size: 26px;
+    top: 100px;
 }

@@ -22,3 +22,12 @@ img {
     position: relative;
     bottom: 20px;
 }
+
+.message {
+    height: 250px;
+    top: 250px;
+}
+
+.green {
+    color: green;
+}

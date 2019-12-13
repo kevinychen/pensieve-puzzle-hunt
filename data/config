@@ -23,4 +23,10 @@ answers:
   sorting: REVEAL
   time: HAPPYMEMORY
   pensieve: REUNION
+messages:
+  pensieve: |
+    Ah, yes! That was it - Team XXXXXXX had given you these puzzles to remind you how fun puzzle-solving (not just puzzle-writing) is!<br/><br/>
+
+    The team is waiting for you at the Mystery Hunt 2020 <span class='green'>REUNION</span>.
+    Let's make a new memory together!
 

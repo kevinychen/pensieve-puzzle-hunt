@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import com.google.common.base.Preconditions;
+import com.google.common.collect.Maps;
 import com.kyc.pensieve.server.PensieveFiles.AccountState;
 import com.kyc.pensieve.server.PensieveFiles.Config;
 import com.kyc.pensieve.server.PensieveFiles.State;
@@ -78,17 +79,23 @@ public class GuessResource implements GuessService {
         if (blocked.get())
             return GuessResponse.builder().blocked(true).build();
         else if (correct.get()) {
-            return GuessResponse.builder().correct(true).answer(guess).build();
+            return GuessResponse.builder()
+                    .correct(true)
+                    .answer(guess)
+                    .message(config.getMessages().get(request.getPuzzle()))
+                    .build();
         } else
             return GuessResponse.builder().build();
     }
 
     @Override
-    public Map<String, String> solved() {
-        return PensieveFiles.getState()
+    public SolvedResponse solved() {
+        Map<String, String> solved = PensieveFiles.getState()
             .getAccounts()
             .getOrDefault(AuthFilter.getAccount(), new AccountState(new HashMap<>(), new ArrayList<>()))
             .getSolved();
+        Map<String, String> messages = Maps.filterKeys(PensieveFiles.getConfig().getMessages(), solved::containsKey);
+        return new SolvedResponse(solved, messages);
     }
 
     private String answerize(String guess) {

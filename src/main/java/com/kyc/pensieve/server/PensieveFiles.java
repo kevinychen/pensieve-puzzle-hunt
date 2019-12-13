@@ -54,6 +54,7 @@ public class PensieveFiles {
         private final Set<String> accounts;
         private final String introMessage;
         private final Map<String, String> answers;
+        private final Map<String, String> messages;
     }
 
     @Data

@@ -1,4 +1,5 @@
 import "./global.css";
+import * as classNames from "classnames";
 import React from 'react';
 
 export class Wrapper extends React.Component {
@@ -8,7 +9,9 @@ export class Wrapper extends React.Component {
         this.state = {
             guess: '',
             answer: undefined,
-        }
+            message: undefined,
+            messageOpen: false,
+        };
     }
 
     componentDidMount() {
@@ -17,8 +20,8 @@ export class Wrapper extends React.Component {
             method: 'GET',
         }).then(response => {
             response.json().then(body => {
-                if (body[puzzleId]) {
-                    this.setState({ answer: body[puzzleId] });
+                if (body.solved[puzzleId]) {
+                    this.setState({ answer: body.solved[puzzleId], message: body.messages[puzzleId] });
                 }
             });
         });
@@ -38,14 +41,22 @@ export class Wrapper extends React.Component {
                 <div className="submit-answer">
                     {this.renderSubmitAnswer()}
                 </div>
+                {this.maybeRenderMessage()}
             </div>
         );
     }
 
     renderSubmitAnswer() {
-        const { guess, answer } = this.state;
+        const { guess, answer, message } = this.state;
         if (answer) {
-            return <span className="solved">Solved: {answer}</span>;
+            return (
+                <span
+                    className={classNames("solved", { "see-message": message })}
+                    onClick={() => this.setState({ messageOpen: true })}
+                >
+                    Solved: {answer}
+                </span>
+            );
         } else {
             return (
                 <div>
@@ -78,12 +89,30 @@ export class Wrapper extends React.Component {
                     if (body.blocked) {
                         alert("You've guessed too many times. Please try again later.");
                     } else if (body.correct) {
-                        this.setState({ answer: body.answer });
+                        this.setState({ answer: body.answer, message: body.message, messageOpen: true });
                     } else {
                         alert("Incorrect");
                     }
                 });
             });
         }
+    }
+
+    maybeRenderMessage() {
+        const { message, messageOpen } = this.state;
+        if (!messageOpen) {
+            return undefined;
+        }
+        return (
+            <div className="message fade-in">
+                <div dangerouslySetInnerHTML={{ __html: message }} />
+                <button
+                    className="continue-button"
+                    onClick={() => this.setState({ messageOpen: false })}
+                >
+                    {"Close"}
+                </button>
+            </div>
+        );
     }
 }

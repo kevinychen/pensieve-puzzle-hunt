@@ -54,5 +54,12 @@ public interface GuessService {
 
     @GET
     @Path("/solved")
-    Map<String, String> solved();
+    SolvedResponse solved();
+
+    @Data
+    public static class SolvedResponse {
+
+        private final Map<String, String> solved;
+        private final Map<String, String> messages;
+    }
 }
