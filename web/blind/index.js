@@ -60,8 +60,8 @@ class App extends React.Component {
         return (
             <Wrapper
                 puzzleId="blind"
-                title="Blind Lights Out"
-                flavortext="The blind don't need light. Help them turn off all the lights, and they may reward you with a message of their own."
+                title="The Deluminator"
+                flavortext="The blind don't need light. Help them turn all the lights out, and they may reward you with a message of their own."
             >
                 <div className="coins-panel">
                     {this.renderCoinPanel()}

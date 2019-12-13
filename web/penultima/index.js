@@ -139,8 +139,8 @@ class App extends React.Component {
         return (
             <Wrapper
                 puzzleId="penultima"
-                title="Penultima"
-                flavortext="Wizard's chess is more difficult when you don't know the rules, and the opponent's pieces are even stranger than your own!"
+                title="Wizard's Chess"
+                flavortext={"In the chess variant \"Penultima\", the rules are unknown and must be discovered."}
             >
                 <div className="status">
                     {status}
@@ -149,7 +149,7 @@ class App extends React.Component {
                     <Grid {...this.state} playerMove={this.playerMove} />
                 </div>
                 <div className="symbols">
-                    <span>♜ ♖ ♗ ♕ ♝ ♞ ♕ ♛ ♗ ♘</span>
+                    <span>♜ ♖ ♝ ♕ ♗ ♘ ♕ ♛ ♝ ♞</span>
                 </div>
             </Wrapper>
         );

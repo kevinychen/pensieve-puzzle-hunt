@@ -14,6 +14,7 @@ import Beater1 from "./beater1.mp3";
 import Beater2 from "./beater2.mp3";
 import Chaser1 from "./chaser1.png";
 import Chaser2 from "./chaser2.png";
+import Chaser3 from "./chaser3.png";
 import Chaser4 from "./chaser4.png";
 import Chaser5 from "./chaser5.png";
 import Chaser6 from "./chaser6.png";
@@ -76,7 +77,7 @@ class App extends React.Component {
                             <div className="box"></div>
                         </div>
                         <div>
-                            <span><span className="medium">[A clue elsewhere in this puzzle]</span><span className="big">(5)</span></span>
+                            <span><img src={Chaser3} /><span className="big">(5)</span></span>
                             <span className="big">+</span>
                             <span><img src={Chaser4} /><span className="big">(4)</span></span>
                             <span className="big">→</span>
@@ -94,7 +95,7 @@ class App extends React.Component {
                 <hr />
                 <div className="group keeper">
                     <h2>Keeper</h2>
-                    <span><i>Find the Keeper of the Clue. The start code is DGDLTC.</i></span>
+                    <span><i>Find the Keeper of the Clue. The start code is <span className="code">DGDLTC</span>.</i></span>
                     <div className="block"><div className="box"></div></div>
                 </div>
                 <hr />

@@ -1,0 +1,40 @@
+.grid {
+    width: 70%;
+    margin: 20px auto;
+    font-family: 'sans-serif';
+    font-size: 18px;
+}
+
+.grid tr {
+    height: 25px;
+}
+
+.grid .bordered {
+    border: 1px solid black;
+}
+
+.clues {
+    text-align: left;
+    width: 67%;
+    margin: 0 auto;
+    font-family: 'sans-serif';
+    font-size: 18px;
+}
+
+.clues ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.clues li {
+    padding: 2px;
+}
+
+.clues .lengths {
+    width: 10%;
+}
+
+.message {
+    width: 1000px;
+    margin-left: -515px;
+}

@@ -1,6 +1,7 @@
 import "./global.css";
 import * as classNames from "classnames";
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 export class Wrapper extends React.Component {
 
@@ -100,7 +101,7 @@ export class Wrapper extends React.Component {
 
     maybeRenderMessage() {
         const { message, messageOpen } = this.state;
-        if (!messageOpen) {
+        if (!messageOpen || !message) {
             return undefined;
         }
         return (
@@ -112,6 +113,7 @@ export class Wrapper extends React.Component {
                 >
                     {"Close"}
                 </button>
+                {ReactDOM.createPortal(<div className="overlay"></div>, document.body)}
             </div>
         );
     }

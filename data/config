@@ -1,22 +1,23 @@
-accounts:
-  - CHOCOPIE
-  - PENSIEVEOFERATOSTHENESX
+introAnswer: CHOCOPIE
 introMessage: |
-  "CHOCO PIE!" you exclaim.<br/><br/>
+  "<span class='green'>CHOCO PIE</span>!" you exclaim.<br/><br/>
 
   The door opens slowly, by itself.<br/><br/>
 
   As you cautiously walk through, you see a small office on the other side, with small tables scattered about.
   On one table is a pointy black hat, ragged and wrinkled as if it has seen many years.
   On another table are a few bright fire-orange feathers, as if from a noble bird, scattered among pieces of dried ash.
-  The entire space looks magical, like it belonged to a wise headmaster of magic.<br/><br/>
+  The entire space looks enchanted, like it belonged to a wise headmaster of magic.<br/><br/>
 
   But one particular thing catches your eye.
   In the corner is a silver metal basin, decorated with runes and bright stones, and filled with a wispy gas.
   You walk closer and see small wisps floating inside, beckoning you to plunge your head into them and discover their secret.
-  Perhaps this is the key to regaining the memory of who you are and where you came from.
+  Perhaps this is the key to regaining the memory of who you are and where you came from.<br/><br/>
+
+  (Nothing in this message, or any future popup messages, is part of a puzzle.)
 answers:
   blind: BANISHED
+  cross: PRECISESLICE
   penultima: PROTECTION
   phone: NOTALKING
   quidditch: BUBBLES
@@ -24,6 +25,24 @@ answers:
   time: HAPPYMEMORY
   pensieve: REUNION
 messages:
+  cross: |
+    Fun fact: discarded ideas for this puzzle include<br/>
+
+    <ul>
+    <li>A popular Slack emoji holding an orange vegetable (CARROT PARROT)</li>
+    <li>Help, I can't seem to stop myself from reading these fantasy books! (FICTION ADDICTION)</li>
+    <li>A piece of DNA from a fish packed in a can (SARDINE GENE)</li>
+    <li>What you might get if you leave French bread in the rain (WET BAGUETTE)</li>
+    <li>Moltres, e.g. (THIRD BIRD)</li>
+    </ul>
+  penultima: |
+    "Can we have some more normal puzzles (aka word puzzles) instead of these weird technical/interactive ones?"<br/><br/>
+
+    "Sorry. I'd rather spend 10 hours writing a chess AI than a crossword puzzle."
+  time: |
+    "I hate these Overtime puzzles. The writer just gets to troll the solvers by making them solve the same puzzles again."<br/><br/>
+
+    "Hey, we're the puzzle writers this time. Let's get our revenge."
   pensieve: |
     Ah, yes! That was it - Team XXXXXXX had given you these puzzles to remind you how fun puzzle-solving (not just puzzle-writing) is!<br/><br/>
 

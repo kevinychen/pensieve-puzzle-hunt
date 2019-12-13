@@ -22,13 +22,13 @@ class App extends React.Component {
             >
                 {this.renderName()}
                 {this.renderPensieveHoverRegion()}
-                {this.renderWisp("wisp1", "blind.html", "Blind Lights Out")}
-                {this.renderWisp("wisp2", "penultima.html", "Penultima")}
-                {this.renderWisp("wisp3", "phone.html", "Noisy Phone Line")}
+                {this.renderWisp("wisp1", "cross.html", "King's Cross")}
+                {this.renderWisp("wisp2", "sorting.html", "The Sorting Hat")}
+                {this.renderWisp("wisp3", "penultima.html", "Wizard's Chess")}
                 {this.renderWisp("wisp4", "quidditch.html", "Quidditch")}
-                {this.renderWisp("wisp5", "sorting.html", "The Sorting Hat")}
-                {this.renderWisp("wisp6", "time.html", "The Time Turner")}
-                {this.renderWisp("wisp7", "#", "unknown")}
+                {this.renderWisp("wisp5", "phone.html", "Wizard's Wireless")}
+                {this.renderWisp("wisp6", "blind.html", "The Deluminator")}
+                {this.renderWisp("wisp7", "time.html", "The Time Turner")}
             </div>
         );
     }

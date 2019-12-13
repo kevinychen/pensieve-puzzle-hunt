@@ -53,9 +53,9 @@ public class AuthFilter implements Filter {
             return Optional.empty();
         return Stream.of(cookies)
             .filter(cookie -> cookie.getName().equalsIgnoreCase(COOKIE_NAME))
-            .map(cookie -> cookie.getValue().toUpperCase())
+            .map(Cookie::getValue)
             .findFirst()
-            .flatMap(cookie -> PensieveFiles.getConfig().getAccounts().contains(cookie) ? Optional.of(cookie) : Optional.empty());
+            .flatMap(cookie -> PensieveFiles.getState().getAccounts().containsKey(cookie) ? Optional.of(cookie) : Optional.empty());
     }
 
     @Override

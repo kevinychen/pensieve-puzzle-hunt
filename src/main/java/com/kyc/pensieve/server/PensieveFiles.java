@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.function.Function;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -51,7 +50,7 @@ public class PensieveFiles {
     @Data
     public static class Config {
 
-        private final Set<String> accounts;
+        private final String introAnswer;
         private final String introMessage;
         private final Map<String, String> answers;
         private final Map<String, String> messages;
@@ -68,7 +67,6 @@ public class PensieveFiles {
     public static class AccountState {
 
         private final Map<String, String> solved;
-        private final List<Long> guessTimes;
     }
 
     private PensieveFiles() {}

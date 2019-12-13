@@ -53,7 +53,7 @@ class App extends React.Component {
         return (
             <div className="slide-in">
                 <div className="werewolf-header"><img src={Werewolf} /></div>
-                <div className="werewolf-text">
+                <div className="werewolf-text this-intro-text-is-not-a-puzzle">
                     <h2>A new day breaks.</h2>
                     <p>
                         After a night of peaceful dreams, you wake to some disturbing news...<br />
@@ -62,7 +62,7 @@ class App extends React.Component {
                     <p>
                         You are in a small prison cell, with walls of stone surrounding you on all sides.
                         The only exit is a door with no knob or handle.
-                        You frantically push it, but it doesn't budge.
+                        You hesitantly push it, but it doesn't budge.
                         Instead, a deep, mechanical voice booms out from the door itself:
                     </p>
                     <i className="boom">PASSWORD????</i>
@@ -99,24 +99,24 @@ class App extends React.Component {
                             <td>◯ ◯ <span className="hl">◯</span> ◯ ◯ &nbsp; ◯ ◯ ◯ ◯ ◯ ◯</td>
                         </tr>
                         <tr>
-                            <td>Nonsense</td>
-                            <td>◯ ◯ ◯ ◯ ◯ ◯ <span className="hl">◯</span> ◯ </td>
+                            <td>Flows into the Leader River</td>
+                            <td>◯ ◯ ◯ ◯ ◯ ◯ ◯  &nbsp; ◯ <span className="hl">◯</span> ◯ ◯ ◯</td>
                         </tr>
                         <tr>
-                            <td>One way to detect fraudulent data</td>
+                            <td>"In unbounded numerical data, over a quarter of values will begin with 1"</td>
                             <td>◯ ◯ ◯ ◯ <span className="hl">◯</span> ◯ ◯ ' ◯ &nbsp; ◯ ◯ ◯ </td>
                         </tr>
                         <tr>
-                            <td>New Zealand flower</td>
-                            <td>◯ ◯ ◯ ◯ ◯ ◯ ◯  &nbsp; ◯ <span className="hl">◯</span> ◯ ◯ ◯</td>
+                            <td>Nonsense</td>
+                            <td>◯ ◯ ◯ ◯ ◯ ◯ <span className="hl">◯</span> ◯ </td>
                         </tr>
                         <tr>
                             <td>Tom's love interest</td>
                             <td>◯ ◯ ◯ ◯ ◯  &nbsp; ◯ <span className="hl">◯</span> ◯ ◯ ◯ ◯ ◯ ◯</td>
                         </tr>
                         <tr>
-                            <td>What you might say at Customs</td>
-                            <td>◯ ◯ ◯ ◯ ◯ ◯ ◯ &nbsp; ◯ ◯ &nbsp; ◯ ◯ <span className="hl">◯</span> ◯ ◯ ◯ ◯</td>
+                            <td>Uncommitted major</td>
+                            <td>◯ ◯ ◯ ◯ <span className="hl">◯</span> ◯ ◯ ◯ ◯ ◯</td>
                         </tr>
                     </tbody>
                 </table>
@@ -141,6 +141,7 @@ class App extends React.Component {
                     } else if (body.correct) {
                         // TODO can we get Set-Cookie header to work here?
                         document.cookie = "TEAM_XXXXXXX_PUZZLES=" + body.answer;
+                        window.scrollTo(0, 0);
                         this.setState({ message: body.message });
                     } else {
                         alert("Incorrect");
@@ -159,6 +160,7 @@ class App extends React.Component {
             <div className="message fade-in">
                 <div dangerouslySetInnerHTML={{ __html: message }} />
                 <a href="/"><button className="continue-button">Continue</button></a>
+                {ReactDOM.createPortal(<div className="overlay"></div>, document.body)}
             </div>
         );
     }

@@ -9,6 +9,7 @@ module.exports = {
         index: './web/index.js',
         entrance: './web/entrance/index.js',
         blind: './web/blind/index.js',
+        cross: './web/cross/index.js',
         penultima: './web/penultima/index.js',
         phone: './web/phone/index.js',
         quidditch: './web/quidditch/index.js',
@@ -38,6 +39,11 @@ module.exports = {
             filename: 'blind.html',
             template: 'web/index.html',
             chunks: ['blind'],
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'cross.html',
+            template: 'web/index.html',
+            chunks: ['cross'],
         }),
         new HtmlWebpackPlugin({
             filename: 'penultima.html',

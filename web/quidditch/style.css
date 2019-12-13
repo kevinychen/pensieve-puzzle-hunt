@@ -49,6 +49,11 @@
     bottom: 20px;
 }
 
+.keeper .code {
+    font-family: 'sans-serif';
+    font-size: 18px;
+}
+
 .seeker img {
     height: 300px;
 }
