@@ -2,7 +2,6 @@ package com.kyc.pensieve.server;
 
 import java.io.File;
 import java.io.IOException;
-import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -27,10 +26,19 @@ public class PensieveFiles {
         }
     }
 
-    public static synchronized void updateState(Function<State, State> changeState) {
+    public static State getState() {
         try {
-            State state = MAPPER.readValue(STATE_FILE, State.class);
-            State newState = changeState.apply(state);
+            STATE_FILE.createNewFile();
+            return MAPPER.readValue(STATE_FILE, State.class);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static synchronized void updateState(Function<State, State> changeState) {
+        State state = getState();
+        State newState = changeState.apply(state);
+        try {
             MAPPER.writeValue(STATE_FILE, newState);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -48,13 +56,14 @@ public class PensieveFiles {
     public static class State {
 
         private final Map<String, AccountState> accounts;
+        private final List<Long> globalGuessTimes;
     }
 
     @Data
     public static class AccountState {
 
-        private final Map<String, Boolean> solved;
-        private final List<Instant> guessTimes;
+        private final Map<String, String> solved;
+        private final List<Long> guessTimes;
     }
 
     private PensieveFiles() {}

@@ -41,7 +41,9 @@ class App extends React.Component {
                 credentials: 'include',
             }).then(response => {
                 response.json().then(body => {
-                    if (body.correct) {
+                    if (body.blocked) {
+                        alert("You've guessed too many times. Please try again later.");
+                    } else if (body.correct) {
                         // TODO can we get Set-Cookie header to work here?
                         document.cookie = "TEAM_XXXXXXX_PUZZLES=" + body.answer;
                         window.location = '/';

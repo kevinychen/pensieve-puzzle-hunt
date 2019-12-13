@@ -1,6 +1,10 @@
 package com.kyc.pensieve.server;
 
+import java.util.Map;
+
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -25,11 +29,12 @@ public interface GuessService {
 
     @POST
     @Path("/")
-    GuessResponse guess(GuessRequest request);
+    GuessResponse guess(@HeaderParam("Authorization") String account, GuessRequest request);
 
     @Data
     public static class GuessRequest {
 
+        private final String account;
         private final String puzzle;
         private final String guess;
     }
@@ -38,6 +43,11 @@ public interface GuessService {
     public static class GuessResponse {
 
         private final boolean correct;
+        private final boolean blocked;
         private final String answer;
     }
+
+    @GET
+    @Path("/solved")
+    Map<String, String> solved(@HeaderParam("Authorization") String account);
 }
