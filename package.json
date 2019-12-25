@@ -1,5 +1,5 @@
 {
-  "name": "pensieve-puzzle-3",
+  "name": "pensieve-puzzle-hunt",
   "version": "0.0.1",
   "scripts": {
     "build": "webpack",
@@ -7,7 +7,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kevinychen/pensieve-puzzle-3.git"
+    "url": "git+https://github.com/kevinychen/pensieve-puzzle-hunt.git"
   },
   "author": "Kevin Y Chen",
   "license": "MIT",

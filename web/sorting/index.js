@@ -81,7 +81,7 @@ class App extends React.Component {
                                     <h3>Ravenclaw</h3>
                                     <ul>
                                         <li>◯ ◯ ◯ ② ◯ </li>
-                                        <li>◯ ◯ ◯ ⑤</li>
+                                        <li>◯ ⑤ ◯</li>
                                         <li>◯ ⑧ ◯ ◯ ◯ ◯</li>
                                     </ul>
                                 </td>
